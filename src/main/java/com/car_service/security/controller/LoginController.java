@@ -1,4 +1,4 @@
-package com.car_service.application.controller;
+package com.car_service.security.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

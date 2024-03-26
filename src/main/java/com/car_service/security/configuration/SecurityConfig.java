@@ -1,4 +1,4 @@
-package com.car_service.configuration;
+package com.car_service.security.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,6 +41,8 @@ public class SecurityConfig {
                                 .loginPage("/login")
                                 .loginProcessingUrl("/authenticate-the-user")
                                 .permitAll()
+                )
+                .logout(logout -> logout.permitAll()
                 );
         return http.build();
 
