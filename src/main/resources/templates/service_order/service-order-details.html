@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{fragments/head-content :: head-content}"></div>
+</head>
+<body>
+<nav th:replace="~{fragments/navigation :: nav}"></nav>
+<br>
+<div class="container row col-md-6 offset-md-3">
+    <div class="card">
+        <div class="card-header">
+            <h3>Service Order Details</h3>
+        </div>
+        <br>
+        <div calss="card-body">
+            <form action="" method="get" role="form"
+            th:action="@{/service-order/details/{id}(id=${serviceOrderDto.id})}"
+            th:object="${serviceOrderDto}">
+                <h5 th:block>
+                        Id: <span th:text="${serviceOrderDto.id}"></span>
+                        <hr>
+                        Created: <span th:text="${#temporals.format(serviceOrderDto.dateTimeCreated,
+                        'dd-MM-yyyy HH:mm')}"></span><br>
+                        Updated: <span th:text="${#temporals.format(serviceOrderDto.dateTimeUpdated,
+                        'dd-MM-yyyy HH:mm')}"></span><br>
+                        Deadline: <span th:text="${#temporals.format(serviceOrderDto.dateTimeDeadline,
+                        'dd-MM-yyyy HH:mm')}"></span>
+                        <hr>
+                        Customer Id: <span th:text="${serviceOrderDto.customerId}"></span><br>
+                        Customer name: <span th:text="${serviceOrderDto.customerName}"></span>
+                        <hr>
+                        Vehicle Id: <span th:text="${serviceOrderDto.vehicleId}"></span><br>
+                        Vehicle reg.: <span th:text="${serviceOrderDto.vehicleRegistrationNumber}"></span>
+                        <hr>
+                        Order status: <span th:text="${serviceOrderDto.orderStatus}"></span>
+                        <hr>
+                        Description 1: <span th:text="${serviceOrderDto.description1}"></span><br>
+                        Description 2: <span th:text="${serviceOrderDto.description2}"></span><br>
+                        Description 3: <span th:text="${serviceOrderDto.description3}"></span><br>
+                </h5>
+            </form>
+        </div>
+        <div class="mb-3">
+            <a th:href="@{/service-order/find-all}">Back to Service Orders List</a>
+        </div>
+        <div>
+            <a href="">Back to Home Page</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
