@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{fragments/head-content :: head-content}"></div>
+</head>
+<body>
+<nav th:replace="~{fragments/navigation :: nav}"></nav>
+<br>
+<div class="container row col-md-6 offset-md-3">
+    <div class="card">
+        <div class="card-header">
+            <h4>Create New Customer</h4>
+        </div>
+        <div class="card-body">
+            <form action="#" method="post" role="form"
+                  th:action="@{/customers/save-new-customer}" th:object="${customerDto}">
+                <div class="form-group mb-3">
+                    <label for="customerName" class="form-label">Customer Name</label>
+                    <input class="form-control" th:field="*{customerName}"
+                           type="text" id="customerName" name="customerName"
+                           placeholder="Enter Customer Name">
+                    <p th:if="${#fields.hasErrors('customerName')}" class="text-danger"
+                       th:errors="*{customerName}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="taxNumber" class="form-label">Tax Number</label>
+                    <input class="form-control" th:field="*{taxNumber}"
+                           type="text" id="taxNumber" name="taxNumber"
+                           placeholder="Enter Tax Number">
+                    <p th:if="${#fields.hasErrors('taxNumber')}" class="text-danger"
+                       th:errors="*{taxNumber}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="country" class="form-label">Country</label>
+                    <input class="form-control" th:field="*{country}"
+                           type="text" id="country" name="country"
+                           placeholder="Enter Country">
+                    <p th:if="${#fields.hasErrors('country')}" class="text-danger"
+                       th:errors="*{country}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="city" class="form-label">City</label>
+                    <input class="form-control" th:field="*{city}"
+                           type="text" id="city" name="city"
+                           placeholder="Enter City">
+                    <p th:if="${#fields.hasErrors('city')}" class="text-danger"
+                       th:errors="*{city}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="postalCode" class="form-label">Postal Code</label>
+                    <input class="form-control" th:field="*{postalCode}"
+                           type="text" id="postalCode" name="postalCode"
+                           placeholder="Enter Postal Code">
+                    <p th:if="${#fields.hasErrors('postalCode')}" class="text-danger"
+                       th:errors="*{postalCode}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="street" class="form-label">Street</label>
+                    <input class="form-control" th:field="*{street}"
+                           type="text" id="street" name="street"
+                           placeholder="Enter Street">
+                    <p th:if="${#fields.hasErrors('street')}" class="text-danger"
+                       th:errors="*{street}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="customerEmail" class="form-label">Customer Email</label>
+                    <input class="form-control" th:field="*{customerEmail}" type="text"
+                           id="customerEmail" name="customerEmail"
+                           placeholder="Enter Customer Email">
+                    <p th:if="${#fields.hasErrors('customerEmail')}" class="text-danger"
+                       th:errors="*{customerEmail}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="customerPhoneNumber" class="form-label">Customer Customer Phone</label>
+                    <input class="form-control" th:field="*{customerPhoneNumber}" type="text"
+                           id="customerPhoneNumber" name="customerPhoneNumber"
+                           placeholder="Enter Customer Phone">
+                    <p th:if="${#fields.hasErrors('customerPhoneNumber')}" class="text-danger"
+                       th:errors="*{customerPhoneNumber}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="customerWebsite" class="form-label">Customer Website</label>
+                    <input class="form-control" th:field="*{customerWebsite}" type="text"
+                           id="customerWebsite" name="customerWebsite"
+                           placeholder="Enter Customer Website">
+                    <p th:if="${#fields.hasErrors('customerWebsite')}" class="text-danger"
+                       th:errors="*{customerWebsite}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <p> Select Is Active?:
+                        <select name="isActive">
+                            <option th:value="true">True</option>
+                            <option th:value="false">False</option>
+                        </select>
+                    </p>
+                </div>
+                <div class="form-group mb-3">
+                    <p> Select Payment Is Blocked?:
+                        <select name="paymentIsBlocked">
+                            <option th:value="true">True</option>
+                            <option th:value="false">False</option>
+                        </select>
+                    </p>
+                </div>
+                <div class="form-group mb-3">
+                    <p> Select Payment Method:
+                        <select name="paymentMethod">
+                            <option value=""
+                                    th:each="payment : ${T(com.customer_department.model.enums.PaymentMethod).values()}"
+                                    th:text="${payment.displayText}"
+                                    th:value="${payment.name()}">
+                            </option>
+                        </select>
+                    </p>
+                </div>
+                <div class="form-group mb-3">
+                    <p> Select Tax Value:
+                        <select name="taxValue">
+                            <option value=""
+                                    th:each="tax : ${T(com.customer_department.model.enums.TaxValue).values()}"
+                                    th:text="${tax.displayText}"
+                                    th:value="${tax.name()}">
+                            </option>
+                        </select>
+                    </p>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="contactPersonName" class="form-label">Contact Person Name</label>
+                    <input class="form-control" th:field="*{contactPersonName}" type="text"
+                           id="contactPersonName" name="contactPersonName"
+                           placeholder="Enter Contact Person Name">
+                    <p th:if="${#fields.hasErrors('contactPersonName')}" class="text-danger"
+                       th:errors="*{contactPersonName}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="contactPersonEmail" class="form-label">Contact Person Email</label>
+                    <input class="form-control" th:field="*{contactPersonEmail}" type="text"
+                           id="contactPersonEmail" name="contactPersonEmail"
+                           placeholder="Enter Contact Person Email">
+                    <p th:if="${#fields.hasErrors('contactPersonEmail')}" class="text-danger"
+                       th:errors="*{contactPersonEmail}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="contactPersonPhone" class="form-label">Contact Person Phone</label>
+                    <input class="form-control" th:field="*{contactPersonPhone}" type="text"
+                           id="contactPersonPhone" name="contactPersonPhone"
+                           placeholder="Enter Contact Person Phone">
+                    <p th:if="${#fields.hasErrors('contactPersonPhone')}" class="text-danger"
+                       th:errors="*{contactPersonPhone}"></p>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary btn-sm">Save New Customer</button>
+                </div>
+            </form>
+            <div class="mb-3">
+                <h5>
+                    <a th:href="@{/customers}">Back to Customers</a>
+                </h5>
+            </div>
+            <div class="mb-3">
+                <h5>
+                    <a href="">Back to Home</a>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{fragments/head-content :: head-content}"></div>
+</head>
+<body>
+<nav th:replace="~{fragments/navigation :: nav}"></nav>
+<br>
+<div class="container row col-md-6 offset-md-3">
+    <div class="card">
+        <div class="card-header">
+            <h3>Customer Details</h3>
+        </div>
+        <div class="card-body">
+            <form action="" method="get" role="form"
+                  th:action="@{/customers/details/{id}(id=${customerDetailsDto.id})}"
+                  th:object="${customerDetailsDto}">
+                <h5>
+                    <th:block>
+                        Id: <span th:text="${customerDetailsDto.id}"></span>
+                        <hr>
+                        Name: <span th:text="${customerDetailsDto.customerName}"></span><br>
+                        Tax Number: <span th:text="${customerDetailsDto.taxNumber}"></span><br>
+                        Country: <span th:text="${customerDetailsDto.country}"></span><br>
+                        City: <span th:text="${customerDetailsDto.city}"></span><br>
+                        Postal Code: <span th:text="${customerDetailsDto.postalCode}"></span><br>
+                        Street: <span th:text="${customerDetailsDto.street}"></span>
+                        <hr>
+                        Email: <span th:text="${customerDetailsDto.customerEmail}"></span><br>
+                        Phone: <span th:text="${customerDetailsDto.customerPhoneNumber}"></span><br>
+                        Website: <span th:text="${customerDetailsDto.customerWebsite}"></span>
+                        <hr>
+                        Active: <span th:text="${customerDetailsDto.active}"></span><br>
+                        Payment Blocked: <span th:text="${customerDetailsDto.paymentIsBlocked}"></span><br>
+                        Payment Method: <span th:text="${customerDetailsDto.paymentMethod}"></span><br>
+                        Tax Value: <span th:text="${customerDetailsDto.taxValue}"></span>
+                        <hr>
+                        Contact Person Name: <span th:text="${customerDetailsDto.contactPersonName}"></span><br>
+                        Contact Person Email: <span th:text="${customerDetailsDto.contactPersonEmail}"></span><br>
+                        Contact Person Phone: <span th:text="${customerDetailsDto.contactPersonPhone}"></span><br>
+                    </th:block>
+                </h5>
+            </form>
+        </div>
+        <div class="mb-3">
+            <a th:href="@{/customers/}">Back to Customers List</a>
+        </div>
+        <div>
+            <a href="">Back to Home Page</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
