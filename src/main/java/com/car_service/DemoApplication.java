@@ -13,3 +13,10 @@ public class DemoApplication {
     }
 
 }
+
+// todo add swagger documentation???
+// todo email notification
+// todo scheduler
+// todo second design pattern (observer?)
+// todo user login
+// todo add AOP
