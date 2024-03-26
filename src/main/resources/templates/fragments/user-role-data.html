@@ -8,6 +8,7 @@
 <body>
 <div class="" th:fragment="user-data">
     <h6>
+        <i>Front-end component designed only for logic presentation and tests.</i><br>
         User: <span sec:authentication="principal.username"></span><br>
         Role(s): <span sec:authentication="principal.authorities"></span>
     </h6>

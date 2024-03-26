@@ -22,9 +22,11 @@ public class VehicleThymeleafController {
 
     private final VehicleServiceImpl vehicleServiceImpl;
 
-    @GetMapping("/home")
-    public String showHomePage() {
-        return "index";
+    @GetMapping("/page")
+    public String showVehiclePage() {
+
+        log.info("====>>>> showVehiclePage() execution.");
+        return "vehicle/vehicles";
     }
 
     @GetMapping("/all-vehicles")
@@ -32,7 +34,7 @@ public class VehicleThymeleafController {
         List<VehicleDto> vehicleDtoList = vehicleServiceImpl.findAllVehicles();
         model.addAttribute("vehicleDtoList", vehicleDtoList);
         log.info("====>>>> listAllVehicles() execution.");
-        return "vehicle-list";
+        return "vehicle/vehicle-list";
     }
 
     @GetMapping("/add-vehicle")
@@ -40,7 +42,7 @@ public class VehicleThymeleafController {
         VehicleDto vehicleDto = new VehicleDto();
         model.addAttribute("vehicleDto", vehicleDto);
         log.info("====>>>> addVehicle() execution");
-        return "add-new-vehicle";
+        return "vehicle/add-new-vehicle";
     }
 
     @PostMapping("/save-new-vehicle")
@@ -60,7 +62,7 @@ public class VehicleThymeleafController {
         VehicleDto vehicleDetails = vehicleServiceImpl.findVehicleByRegistrationNumber(registration);
         model.addAttribute("vehicleDetails", vehicleDetails);
         log.info("====>>>> listVehicleDetails(registration: " + registration + ") execution");
-        return "vehicle-details";
+        return "vehicle/vehicle-details";
     }
 
     @GetMapping("/edit/{registration}")
@@ -68,7 +70,7 @@ public class VehicleThymeleafController {
         VehicleDto vehicleDto = vehicleServiceImpl.findVehicleByRegistrationNumber(registration);
         model.addAttribute("vehicleDto", vehicleDto);
         log.info("====>>>> editVehicle() execution");
-        return "edit-vehicle";
+        return "vehicle/edit-vehicle";
     }
 
     @PostMapping("/update/{registration}")
@@ -77,19 +79,19 @@ public class VehicleThymeleafController {
                                 BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("vehicleDto", vehicleDto);
-            return "edit-vehicle";
+            return "vehicle/edit-vehicle";
         }
         vehicleDto.setRegistrationNumber(registration);
         vehicleServiceImpl.mvcUpdateVehicle(vehicleDto);
         log.info("====>>>> updateVehicle() execution");
-        return "redirect:/vehicles/all-vehicles";
+        return "redirect:/vehicle/all-vehicles";
     }
 
     @GetMapping("/delete/{registration}")
     public String deleteVehicle(@PathVariable("registration") String registration) {
         vehicleServiceImpl.deleteVehicleByRegistrationNumber(registration);
         log.info("====>>>> deleteVehicle(" + registration + ") execution");
-        return "redirect:/vehicles/all-vehicles";
+        return "redirect:/vehicle/all-vehicles";
     }
 
 }
