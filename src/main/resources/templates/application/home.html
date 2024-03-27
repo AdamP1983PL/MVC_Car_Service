@@ -10,35 +10,37 @@
 <div class="container">
     <div class="text-center">
         <br>
-        <h3>Car Service Management System</h3>
+        <h2>Car Service Management System</h2>
     </div>
     <hr>
     <br>
     <div class="text-center">
         <div sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/admin}">
-                <h3>Manage Users</h3>
+                <h4>Manage Users</h4>
             </a>
         </div>
         <br>
         <div sec:authorize="hasRole('USER')">
             <div class="text-center">
                 <a th:href="@{/vehicle/page}">
-                    <h3>Manage Vehicles</h3>
+                    <h4>Manage Vehicles</h4>
                 </a>
             </div>
             <br>
             <div class="text-center">
                 <a th:href="@{/customer/page}">
-                    <h3>Manage Customers</h3>
+                    <h4>Manage Customers</h4>
                 </a>
             </div>
             <br>
             <div class="text-center">
                 <a href="@{/service-order/page}">
-                    <h3>Manage Service Orders</h3>
+                    <h4>Manage Service Orders</h4>
                 </a>
             </div>
+            <br>
+            <hr>
         </div>
     </div>
 </div>
