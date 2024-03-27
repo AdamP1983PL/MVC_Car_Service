@@ -1,6 +1,10 @@
 package com.car_service.vehicle.model.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@Getter
+@AllArgsConstructor
 public enum GearboxType {
     UNKNOWN("UNKNOWN"),
     MANUAL("MANUAL"),
@@ -8,13 +12,5 @@ public enum GearboxType {
     AUTOMATIC("AUTOMATIC");
 
     private final String displayText;
-
-    GearboxType(String displayText) {
-        this.displayText = displayText;
-    }
-
-    public String getDisplayText() {
-        return displayText;
-    }
 
 }

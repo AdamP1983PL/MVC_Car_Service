@@ -56,3 +56,5 @@ public class Customer {
     private String contactPersonPhone;
 
 }
+
+// todo add hibernate mappings

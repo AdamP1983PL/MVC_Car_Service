@@ -67,3 +67,5 @@ public class ServiceOrder {
     private String description3;
 
 }
+
+// todo add hibernate mappings

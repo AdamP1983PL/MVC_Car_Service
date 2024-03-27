@@ -31,8 +31,8 @@ public class VehicleThymeleafController {
 
     @GetMapping("/all-vehicles")
     public String listAllVehicles(Model model) {
-        List<VehicleDto> vehicleDtoList = vehicleServiceImpl.findAllVehicles();
-        model.addAttribute("vehicleDtoList", vehicleDtoList);
+        List<VehicleDto> vehicles = vehicleServiceImpl.findAllVehicles();
+        model.addAttribute("vehicles", vehicles);
         log.info("====>>>> listAllVehicles() execution.");
         return "vehicle/vehicle-list";
     }
@@ -50,14 +50,14 @@ public class VehicleThymeleafController {
                                  BindingResult result, Model model) {
         if(result.hasErrors()) {
             model.addAttribute("vehicleDto", vehicleDto);
-            return "add-new-vehicle";
+            return "vehicle/add-new-vehicle";
         }
         vehicleServiceImpl.createVehicle(vehicleDto);
         log.info("====>>>> saveNewVehicle() execution");
-        return "redirect:/vehicles/frontend/";
+        return "redirect:/vehicle/all-vehicles";
     }
 
-    @GetMapping("/details/registration/{registration}")
+    @GetMapping("/details/{registration}")
     public String listVehicleDetails(@PathVariable("registration") String registration, Model model) {
         VehicleDto vehicleDetails = vehicleServiceImpl.findVehicleByRegistrationNumber(registration);
         model.addAttribute("vehicleDetails", vehicleDetails);
@@ -83,7 +83,7 @@ public class VehicleThymeleafController {
         }
         vehicleDto.setRegistrationNumber(registration);
         vehicleServiceImpl.mvcUpdateVehicle(vehicleDto);
-        log.info("====>>>> updateVehicle() execution");
+        log.info("====>>>> updateVehicle(registration: " + registration + ") execution");
         return "redirect:/vehicle/all-vehicles";
     }
 

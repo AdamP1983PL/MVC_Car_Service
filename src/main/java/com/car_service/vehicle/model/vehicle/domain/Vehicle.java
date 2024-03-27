@@ -1,11 +1,9 @@
 package com.car_service.vehicle.model.vehicle.domain;
 
-
 import com.car_service.vehicle.model.enums.EngineType;
 import com.car_service.vehicle.model.enums.GearboxType;
 import jakarta.persistence.*;
 import lombok.*;
-
 
 @Getter
 @Setter
@@ -50,3 +48,5 @@ public class Vehicle {
     private String additionalInformation;
 
 }
+
+// todo add hibernate mappings
