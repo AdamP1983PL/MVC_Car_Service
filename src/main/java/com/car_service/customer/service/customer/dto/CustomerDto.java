@@ -3,6 +3,7 @@ package com.car_service.customer.service.customer.dto;
 
 import com.car_service.customer.model.enums.PaymentMethod;
 import com.car_service.customer.model.enums.TaxValue;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -35,6 +36,7 @@ public class CustomerDto {
     @NotEmpty(message = "Street should not be empty.")
     private String street;
     @Size(min = 3, max = 50)
+    @Email
     @NotEmpty(message = "Customer email should not be empty.")
     private String customerEmail;
     @Size(min = 3, max = 30)
@@ -60,5 +62,3 @@ public class CustomerDto {
     private String contactPersonPhone;
 
 }
-
-// todo add swagger documentation

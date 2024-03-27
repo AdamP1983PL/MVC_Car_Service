@@ -5,6 +5,7 @@
 </head>
 <body>
 <nav th:replace="~{fragments/navigation :: nav}"></nav>
+<div th:replace="~{fragments/user-role-data :: user-data}"></div>
 <br>
 <div class="container row col-md-6 offset-md-3">
     <div class="card">
@@ -13,7 +14,7 @@
         </div>
         <div class="card-body">
             <form action="#" method="post" role="form"
-                  th:action="@{/customers/update/{id}(id=${customerDto.id})}"
+                  th:action="@{/customer/update/{id}(id=${customerDto.id})}"
                   th:object="${customerDto}">
                 <div class="">
                     <input class="form-control" th:field="*{id}"
@@ -100,7 +101,7 @@
                     <p> Select Payment Method:
                         <select name="paymentMethod">
                             <option value=""
-                                    th:each="payment : ${T(com.customer_department.model.enums.PaymentMethod).values()}"
+                                    th:each="payment : ${T(com.car_service.customer.model.enums.PaymentMethod).values()}"
                                     th:text="${payment.displayText}"
                                     th:value="${payment.name()}">
                             </option>
@@ -111,7 +112,7 @@
                     <p> Select Tax Value:
                         <select name="taxValue">
                             <option value=""
-                                    th:each="tax : ${T(com.customer_department.model.enums.TaxValue).values()}"
+                                    th:each="tax : ${T(com.car_service.customer.model.enums.TaxValue).values()}"
                                     th:text="${tax.displayText}"
                                     th:value="${tax.name()}">
                             </option>
@@ -144,10 +145,10 @@
                 </div>
             </form>
             <div class="mb-3">
-                <a th:href="@{/customers/}">Back to Customers List</a>
+                <a th:href="@{/customer/}">Back to Customers List</a>
             </div>
             <div>
-                <a href="">Back to Home Page</a>
+                <a th:href="@{/}">Back to Home Page</a>
             </div>
             <div>
                 <h6>

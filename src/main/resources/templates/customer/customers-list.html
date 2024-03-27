@@ -5,6 +5,7 @@
 </head>
 <body>
 <nav th:replace="~{fragments/navigation :: nav}"></nav>
+<div th:replace="~{fragments/user-role-data :: user-data}"></div>
 <br>
 <div class="container">
     <div class="text-center">
@@ -23,13 +24,13 @@
             <th>Phone</th>
             <th>Website</th>
             <th>Active</th>
-            <th>Details</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th class="text-center">Details</th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">Delete</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="customer : ${customerDtoList}" th:object="${customer}">
+        <tr th:each="customer : ${customers}" th:object="${customer}">
             <td th:text="*{id}"></td>
             <td th:text="*{customerName}"></td>
             <td th:text="*{taxNumber}"></td>
@@ -37,16 +38,16 @@
             <td th:text="*{getCustomerPhoneNumber()}"></td>
             <td th:text="*{getCustomerWebsite()}"></td>
             <td th:text="*{isActive()}"></td>
-            <td>
-                <a th:href="@{/customers/details/{id}(id=${customer.id})}"
+            <td class="text-center">
+                <a th:href="@{/customer/details/{id}(id=${customer.id})}"
                 class="btn btn-primary bth-sm">Details</a>
             </td>
-            <td>
-                <a th:href="@{/customers/edit/{id}(id=${customer.id})}"
+            <td class="text-center">
+                <a th:href="@{/customer/edit/{id}(id=${customer.id})}"
                    class="btn btn-primary bth-sm">Edit</a>
             </td>
-            <td>
-                <a th:href="@{/mvc/customers/{id}(id=${customer.id})}"
+            <td class="text-center">
+                <a th:href="@{/customer/delete/{id}(id=${customer.id})}"
                    class="btn btn-danger bth-sm"
                    onclick="if (!(confirm('Delete this Vehicle?'))) return false">Delete</a>
             </td>
@@ -55,12 +56,12 @@
     </table>
     <div>
         <h5>
-            <a th:href="@{/customers/add-customer}">Add New Customer</a>
+            <a th:href="@{/customer/add-customer}">Add New Customer</a>
         </h5>
     </div>
     <div>
         <h5>
-            <a href="">Back to Home Page</a>
+            <a th:href="@{/}">Back to Home Page</a>
         </h5>
     </div>
     <hr>

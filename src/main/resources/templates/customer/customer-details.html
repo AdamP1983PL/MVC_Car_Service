@@ -5,6 +5,7 @@
 </head>
 <body>
 <nav th:replace="~{fragments/navigation :: nav}"></nav>
+<div th:replace="~{fragments/user-role-data :: user-data}"></div>
 <br>
 <div class="container row col-md-6 offset-md-3">
     <div class="card">
@@ -13,7 +14,7 @@
         </div>
         <div class="card-body">
             <form action="" method="get" role="form"
-                  th:action="@{/customers/details/{id}(id=${customerDetailsDto.id})}"
+                  th:action="@{/customer/details/{id}(id=${customerDetailsDto.id})}"
                   th:object="${customerDetailsDto}">
                 <h5>
                     <th:block>
@@ -43,10 +44,10 @@
             </form>
         </div>
         <div class="mb-3">
-            <a th:href="@{/customers/}">Back to Customers List</a>
+            <a th:href="@{/customer/}">Back to Customers List</a>
         </div>
         <div>
-            <a href="">Back to Home Page</a>
+            <a th:href="@{/}">Back to Home Page</a>
         </div>
     </div>
 </div>
