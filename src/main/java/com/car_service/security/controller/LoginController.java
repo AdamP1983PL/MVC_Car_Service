@@ -15,4 +15,11 @@ public class LoginController {
         return "/application/login-page";
     }
 
+    @GetMapping("/access-denied")
+    public String showAccessDeniedPage() {
+
+        log.info("====>>>> showAccessDeniedPage() execution.");
+        return "/application/access-denied";
+    }
+
 }

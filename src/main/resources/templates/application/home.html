@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <div th:replace="~{fragments/head-content :: head-content}"></div>
 </head>
@@ -14,27 +15,31 @@
     <hr>
     <br>
     <div class="text-center">
-        <a th:href="@{/admin}">
-            <h3>Manage Users</h3>
-        </a>
-    </div>
-    <br>
-    <div class="text-center">
-        <a th:href="@{/vehicle/page}">
-            <h3>Manage Vehicles</h3>
-        </a>
-    </div>
-    <br>
-    <div class="text-center">
-        <a href="@{/home/...}">
-            <h3>Manage Customers</h3>
-        </a>
-    </div>
-    <br>
-    <div class="text-center">
-        <a href="@{/home/...}">
-            <h3>Manage Service Orders</h3>
-        </a>
+        <div sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/admin}">
+                <h3>Manage Users</h3>
+            </a>
+        </div>
+        <br>
+        <div sec:authorize="hasRole('USER')">
+            <div class="text-center">
+                <a th:href="@{/vehicle/page}">
+                    <h3>Manage Vehicles</h3>
+                </a>
+            </div>
+            <br>
+            <div class="text-center">
+                <a href="@{/home/...}">
+                    <h3>Manage Customers</h3>
+                </a>
+            </div>
+            <br>
+            <div class="text-center">
+                <a href="@{/home/...}">
+                    <h3>Manage Service Orders</h3>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 </body>

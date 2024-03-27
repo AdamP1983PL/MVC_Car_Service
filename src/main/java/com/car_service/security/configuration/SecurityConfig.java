@@ -17,7 +17,7 @@ public class SecurityConfig {
         UserDetails admin = User.builder()
                 .username("admin")
                 .password("{noop}admin")
-                .roles("ADMIN", "USER")
+                .roles("ADMIN")
                 .build();
 
         UserDetails user1 = User.builder()
@@ -34,7 +34,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(config ->
                         config
-                                .requestMatchers("/").hasRole("USER")
+                                .requestMatchers("/").hasAnyRole("ADMIN", "USER")
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated())
                 .formLogin(form ->
@@ -44,6 +44,9 @@ public class SecurityConfig {
                                 .permitAll()
                 )
                 .logout(logout -> logout.permitAll()
+                )
+                .exceptionHandling(config ->
+                        config.accessDeniedPage("/access-denied")
                 );
         return http.build();
 
