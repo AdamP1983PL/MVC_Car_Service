@@ -39,18 +39,22 @@
                         Contact Person Name: <span th:text="${customerDetailsDto.contactPersonName}"></span><br>
                         Contact Person Email: <span th:text="${customerDetailsDto.contactPersonEmail}"></span><br>
                         Contact Person Phone: <span th:text="${customerDetailsDto.contactPersonPhone}"></span><br>
+                        <hr>
                     </th:block>
                 </h5>
             </form>
-        </div>
-        <div class="mb-3">
-            <a th:href="@{/customer/}">Back to Customers List</a>
-        </div>
-        <div>
-            <a th:href="@{/}">Back to Home Page</a>
+            <div class="mb-3">
+                <a th:href="@{/customer/}">
+                    <h6>Back to Customers List</h6>
+                </a>
+            </div>
+            <div class="mb-3">
+                <a th:href="@{/}">
+                    <h6>Back to Home Page</h6>
+                </a>
+            </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>

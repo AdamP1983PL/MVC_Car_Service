@@ -10,7 +10,7 @@
 <div class="container row col-md-6 offset-md-3">
     <div class="card">
         <div class="card-header">
-            <h4>Edit Customer</h4>
+            <h3>Edit Customer</h3>
         </div>
         <div class="card-body">
             <form action="#" method="post" role="form"
@@ -88,7 +88,7 @@
                         </select>
                     </p>
                 </div>
-<!--                todo always return false-->
+                <!--                todo always return false-->
                 <div class="form-group mb-3">
                     <p> Select Payment Is Blocked:
                         <select name="paymentIsBlocked">
@@ -145,10 +145,14 @@
                 </div>
             </form>
             <div class="mb-3">
-                <a th:href="@{/customer/}">Back to Customers List</a>
+                <a th:href="@{/customer/}">
+                    <h6>Back to Customers List</h6>
+                </a>
             </div>
-            <div>
-                <a th:href="@{/}">Back to Home Page</a>
+            <div class="mb-3">
+                <a th:href="@{/}">
+                    <h6>Back to Home Page</h6>
+                </a>
             </div>
             <div>
                 <h6>
