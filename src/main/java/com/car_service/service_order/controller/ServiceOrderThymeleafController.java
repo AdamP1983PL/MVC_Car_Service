@@ -84,38 +84,38 @@ public class ServiceOrderThymeleafController {
 
     @GetMapping("/edit/{id}")
     public String editServiceOrder(@PathVariable("id") Long id, Model model) {
-//        ServiceOrderDto serviceOrderDto = serviceOrderServiceImpl.findServiceOrderById(id);
-//        model.addAttribute("serviceOrderDto", serviceOrderDto);
-//
-//        List<CustomerDto> customers = customerApiServiceImpl.findAllCustomers();
-//        model.addAttribute("customers", customers);
-//
-//        List<VehicleDto> vehicles = vehicleApiServiceImpl.findAllVehicles();
-//        model.addAttribute("vehicles", vehicles);
-//
-//        log.info("====>>>> editServiceOrder(" + id + ") execution.");
-        return "edit-service-order";
+        ServiceOrderDto serviceOrderDto = serviceOrderService.findServiceOrderById(id);
+        model.addAttribute("serviceOrderDto", serviceOrderDto);
+
+        List<CustomerDto> customers = customerService.findAllCustomers();
+        model.addAttribute("customers", customers);
+
+        List<VehicleDto> vehicles = vehicleService.findAllVehicles();
+        model.addAttribute("vehicles", vehicles);
+
+        log.info("====>>>> editServiceOrder(" + id + ") execution.");
+        return "/service_order/edit-service-order";
     }
 
     @PostMapping("/update/{id}")
     public String updateServiceOrder(@PathVariable("id") Long id,
                                      @Valid @ModelAttribute("serviceOrderDto") ServiceOrderDto serviceOrderDto,
                                      BindingResult result, Model model) {
-//        if (result.hasErrors()) {
-//            model.addAttribute("serviceOrderDto", serviceOrderDto);
-//            return "edit-service-order";
-//        }
-//        serviceOrderDto.setId(id);
-//        serviceOrderServiceImpl.mvcUpdateServiceOrder(serviceOrderDto);
-//        log.info("====>>>> updateServiceOrder(" + id + ") execution.");
-        return "redirect:/service-order/find-all";
+        if (result.hasErrors()) {
+            model.addAttribute("serviceOrderDto", serviceOrderDto);
+            return "/service_order/edit-service-order";
+        }
+        serviceOrderDto.setId(id);
+        serviceOrderService.updateServiceOrder(serviceOrderDto);
+        log.info("====>>>> updateServiceOrder(" + id + ") execution.");
+        return "redirect:/service-order/";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteServiceOrder(@PathVariable("id") Long id) {
-//        serviceOrderServiceImpl.deleteServiceOrder(id);
-//        log.info("====>>>> deleteServiceOrder(" + id + ") execution");
-        return "redirect:/service-order/find-all";
+        serviceOrderService.deleteServiceOrder(id);
+        log.info("====>>>> deleteServiceOrder(" + id + ") execution");
+        return "redirect:/service-order/";
     }
 
 }
