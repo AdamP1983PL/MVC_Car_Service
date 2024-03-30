@@ -1,11 +1,15 @@
 package com.car_service.service_order.service;
 
+import com.car_service.customer.service.customer.CustomerService;
+import com.car_service.customer.service.customer.dto.CustomerDto;
 import com.car_service.exceptions.ResourceNotFoundException;
 import com.car_service.service_order.model.enums.OrderStatus;
 import com.car_service.service_order.model.service_order.domain.ServiceOrder;
 import com.car_service.service_order.model.service_order.repository.ServiceOrderRepository;
 import com.car_service.service_order.service.dto.ServiceOrderDto;
 import com.car_service.service_order.service.mapper.ServiceOrderMapper;
+import com.car_service.vehicle.service.vehicle.VehicleService;
+import com.car_service.vehicle.service.vehicle.dto.VehicleDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,6 +24,8 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     private final ServiceOrderRepository serviceOrderRepository;
     private final ServiceOrderMapper serviceOrderMapper;
+    private final CustomerService customerService;
+    private final VehicleService vehicleService;
 
     @Override
     public List<ServiceOrderDto> findAllServiceOrders() {
@@ -64,11 +70,26 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     @Override
     public ServiceOrderDto createServiceOrder(ServiceOrderDto serviceOrderDto) {
-        ServiceOrder savedServiceOrder = serviceOrderRepository
-                .save(serviceOrderMapper.mapToServiceOrder(serviceOrderDto));
+
+        if (serviceOrderDto == null) {
+            throw new IllegalArgumentException("serviceOrderDto can not be null");
+        }
+
+        ServiceOrder serviceOrder = serviceOrderMapper.mapToServiceOrder(serviceOrderDto);
+
+        CustomerDto customerDto = customerService.findCustomerById(serviceOrderDto.getCustomerId());
+        String customerName = customerDto.getCustomerName();
+        serviceOrder.setCustomerName(customerName);
+
+        VehicleDto vehicleDto = vehicleService.findVehicleById(serviceOrder.getVehicleId());
+        String vehicleRegistration = vehicleDto.getRegistrationNumber();
+        serviceOrder.setVehicleRegistrationNumber(vehicleRegistration);
+
+        ServiceOrder savedServiceOrder = serviceOrderRepository.save(serviceOrder);
 
         log.info("====>>>> createServiceOrder(" + serviceOrderDto.getId() + ") execution.");
         return serviceOrderMapper.mapToServiceOrderDto(savedServiceOrder);
+
     }
 
     @Override

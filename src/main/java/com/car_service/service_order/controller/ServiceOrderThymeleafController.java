@@ -70,16 +70,16 @@ public class ServiceOrderThymeleafController {
         }
         serviceOrderService.createServiceOrder(serviceOrderDto);
         log.info("====>>>> saveNewServiceOrder() execution.");
-        return "redirect:/service-order/find-all";
+        return "redirect:/service-order/";
     }
 
 
     @GetMapping("/details/{id}")
     public String listServiceOrderDetails(@PathVariable("id") Long id, Model model) {
-//        ServiceOrderDto serviceOrderDto = serviceOrderServiceImpl.findServiceOrderById(id);
-//        model.addAttribute("serviceOrderDto", serviceOrderDto);
-//        log.info("====>>>> listServiceOrderDetails(" + id + ") execution.");
-        return "service-order-details";
+        ServiceOrderDto serviceOrderDetails = serviceOrderService.findServiceOrderById(id);
+        model.addAttribute("serviceOrderDetails", serviceOrderDetails);
+        log.info("====>>>> listServiceOrderDetails(" + id + ") execution.");
+        return "/service_order/service-order-details";
     }
 
     @GetMapping("/edit/{id}")
