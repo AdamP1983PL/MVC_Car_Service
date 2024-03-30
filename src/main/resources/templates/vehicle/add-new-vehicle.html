@@ -85,6 +85,15 @@
                     <p th:if="${#fields.hasErrors('additionalInformation')}" class="text-danger"
                        th:errors="*{additionalInformation}"></p>
                 </div>
+                <div class="form-group mb-3">
+                    <label for="customerId">Customer Id by name: </label>
+                    <select name="customerId" id="customerId">
+                        <option th:each="cust : ${customers}"
+                                th:value="${cust.id}"
+                                th:text="${cust.customerName}">Customer Name
+                        </option>
+                    </select>
+                </div>
                 <div class="mb-3">
                     <button class="btn btn-primary" type="submit">Save Vehicle</button>
                 </div>

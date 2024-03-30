@@ -23,9 +23,9 @@ public class Vehicle {
     private String registrationNumber;
     @Column(name = "VIN", nullable = false)
     private String vehicleIdentificationNumber;
-    @Column(name="MANUFACTURER", nullable = false)
+    @Column(name = "MANUFACTURER", nullable = false)
     private String manufacturer;
-    @Column(name="MODEL", nullable = false)
+    @Column(name = "MODEL", nullable = false)
     private String model;
     @Column(name = "PRODUCTION_YEAR", nullable = false)
     private String productionYear;
@@ -39,10 +39,8 @@ public class Vehicle {
     private GearboxType gearboxType;
     @Column(name = "ADDITIONAL_INFO")
     private String additionalInformation;
-//    @ManyToOne
-//    @JoinColumn(name="CUSTOMER_ID")
-//    private Customer customer;
+    @ManyToOne
+    @JoinColumn(name = "CUSTOMER_ID")
+    private Customer customer;
 
 }
-
-// todo add hibernate mappings

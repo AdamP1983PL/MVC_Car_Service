@@ -1,6 +1,11 @@
 #
 #
-# INSERT INTO Customer_Department.customers (CUSTOMER_NAME, TAX_NUMBER, COUNTRY, CITY, POSTAL_CODE, STREET, CUSTOMER_EMAIL, CUSTOMER_PHONE_NO, CUSTOMER_WEBSITE, ACTIVE_CLIENT, BLOCKED_PAYMENT, PAYMENT_METHOD, TAX_VALUE, CONTACT_PERSON_NAME, CONTACT_PERSON_EMAIL, CONTACT_PERSON_PHONE)
+# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<IT IS IMPORTANT TO ADD CUSTOMERS FIRST>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#
+
+# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<ADD CUSTOMERS:>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# INSERT INTO car_service.customers (CUSTOMER_NAME, TAX_NUMBER, COUNTRY, CITY, POSTAL_CODE, STREET, CUSTOMER_EMAIL, CUSTOMER_PHONE_NO, CUSTOMER_WEBSITE, ACTIVE_CLIENT, BLOCKED_PAYMENT, PAYMENT_METHOD, TAX_VALUE, CONTACT_PERSON_NAME, CONTACT_PERSON_EMAIL, CONTACT_PERSON_PHONE )
 # VALUES
 #     ('PolAvServ Ltd.', '1234567890', 'Poland', 'Warsaw', '00-001', 'ul. Solidarności 1', 'info@polavserv.com', '+48123456789', 'www.polavserv.com', true, false, 'CASH', 'TWENTY_THREE', 'John Smith', 'john.smith@example.com', '+48123456789'),
 #     ('PolEnGroup Ltd.', '2345678901', 'Poland', 'Krakow', '30-001', 'ul. Grodzka 2', 'contact@polengroup.com', '+48234567890', 'www.polengroup.com', true, false, 'THREE_DAY_TRANSFER', 'TWENTY_THREE', 'Anna Johnson', 'anna.johnson@example.com', '+48234567890'),
@@ -13,29 +18,19 @@
 #     ('PolPetrochem Ltd.', '9012345678', 'Poland', 'Gdynia', '81-001', 'ul. Rafineryjna 9', 'contact@polpetrochem.com', '+48901234567', 'www.polpetrochem.com', true, false, 'SEVEN_DAY_TRANSFER', 'TWENTY_THREE', 'David Brown', 'david.brown@example.com', '+48901234567'),
 #     ('PolFertilizer Ltd.', '0123456789', 'Poland', 'Bydgoszcz', '85-001', 'ul. Nawozowa 10', 'info@polfer.com', '+48012345678', 'www.polfer.com', true, false, 'BY_CARD', 'ZERO', 'Sophia Taylor', 'sophia.taylor@example.com', '+48012345678');
 #
-# INSERT INTO Customer_Department.customers (CUSTOMER_NAME, TAX_NUMBER, COUNTRY, CITY, POSTAL_CODE, STREET, CUSTOMER_EMAIL, CUSTOMER_PHONE_NO, CUSTOMER_WEBSITE, ACTIVE_CLIENT, BLOCKED_PAYMENT, PAYMENT_METHOD, TAX_VALUE, CONTACT_PERSON_NAME, CONTACT_PERSON_EMAIL, CONTACT_PERSON_PHONE)
-# VALUES
-#     ('PolSteel Ltd.', '1234567891', 'Poland', 'Sosnowiec', '41-200', 'ul. Stalowa 11', 'info@polsteel.com', '+48123456789', 'www.polsteel.com', true, false, 'CONFIRMED_TRANSFER', 'TWENTY_THREE', 'Alexander Garcia', 'alexander.garcia@example.com', '+48123456789'),
-#     ('PolAutoParts Ltd.', '2345678902', 'Poland', 'Radom', '26-600', 'ul. Częściowa 12', 'contact@polautoparts.com', '+48234567890', 'www.polautoparts.com', true, false, 'CASH', 'TWENTY_THREE', 'Emma Martinez', 'emma.martinez@example.com', '+48234567890'),
-#     ('PolTechSolutions Ltd.', '3456789013', 'Poland', 'Rzeszow', '35-001', 'ul. Technologiczna 13', 'contact@poltechsolutions.com', '+48345678901', 'www.poltechsolutions.com', true, false, 'SEVEN_DAY_TRANSFER', 'ZERO', 'William Rodriguez', 'william.rodriguez@example.com', '+48345678901'),
-#     ('PolFoodGroup Ltd.', '4567890124', 'Poland', 'Olsztyn', '10-001', 'ul. Spożywcza 14', 'info@polfoodgroup.com', '+48456789012', 'www.polfoodgroup.com', true, false, 'THREE_DAY_TRANSFER', 'ZERO', 'Oliver Martinez', 'oliver.martinez@example.com', '+48456789012'),
-#     ('PolChemicals Ltd.', '5678901235', 'Poland', 'Czestochowa', '42-200', 'ul. Chemiczna 15', 'contact@polchemicals.com', '+48567890123', 'www.polchemicals.com', true, false, 'BY_CARD', 'TWENTY_THREE', 'Sophia Garcia', 'sophia.garcia@example.com', '+48567890123'),
-#     ('PolFurniture Ltd.', '6789012346', 'Poland', 'Gliwice', '44-100', 'ul. Meblowa 16', 'info@polfurniture.com', '+48678901234', 'www.polfurniture.com', true, false, 'CONFIRMED_TRANSFER', 'ZERO', 'James Taylor', 'james.taylor@example.com', '+48678901234'),
-#     ('PolAgroProducts Ltd.', '7890123457', 'Poland', 'Kielce', '25-001', 'ul. Rolnicza 17', 'contact@polagroproducts.com', '+48789012345', 'www.polagroproducts.com', true, false, 'CASH', 'TWENTY_THREE', 'Charlotte Rodriguez', 'charlotte.rodriguez@example.com', '+48789012345'),
-#     ('PolElectronics Ltd.', '8901234568', 'Poland', 'Bielsko-Biala', '43-300', 'ul. Elektroniczna 18', 'info@polelectronics.com', '+48890123456', 'www.polelectronics.com', true, false, 'FOURTEEN_DAY_TRANSFER', 'ZERO', 'Mia Martinez', 'mia.martinez@example.com', '+48890123456'),
-#     ('PolMedDevices Ltd.', '9012345679', 'Poland', 'Elblag', '82-300', 'ul. Medyczna 19', 'contact@polmeddevices.com', '+48901234567', 'www.polmeddevices.com', true, false, 'BY_CARD', 'TWENTY_THREE', 'Daniel Garcia', 'daniel.garcia@example.com', '+48901234567'),
-#     ('PolEnergySolutions Ltd.', '0123456780', 'Poland', 'Jastrzebie-Zdroj', '44-340', 'ul. Energetyczna 20', 'info@polenergysolutions.com', '+48012345678', 'www.polenergysolutions.com', true, false, 'THREE_DAY_TRANSFER', 'TWENTY_THREE', 'Amelia Rodriguez', 'amelia.rodriguez@example.com', '+48012345678');
 #
-# INSERT INTO Customer_Department.customers (CUSTOMER_NAME, TAX_NUMBER, COUNTRY, CITY, POSTAL_CODE, STREET, CUSTOMER_EMAIL, CUSTOMER_PHONE_NO, CUSTOMER_WEBSITE, ACTIVE_CLIENT, BLOCKED_PAYMENT, PAYMENT_METHOD, TAX_VALUE, CONTACT_PERSON_NAME, CONTACT_PERSON_EMAIL, CONTACT_PERSON_PHONE)
+#
+# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<ADD VEHICLES:>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#
+# INSERT INTO car_service.vehicles (REGISTRATION_NO, VIN, MANUFACTURER, MODEL, PRODUCTION_YEAR, MILEAGE, ENGINE_TYPE, GEARBOX_TYPE, ADDITIONAL_INFO, CUSTOMER_ID)
 # VALUES
-#     ('PolFoodTech Ltd.', '2345678901', 'Poland', 'Krakow', '30-001', 'ul. Spożywcza 22', 'info@polfoodtech.com', '+48234567890', 'www.polfoodtech.com', true, false, 'CASH', 'ZERO', 'Emma Johnson', 'emma.johnson@example.com', '+48234567890'),
-#     ('PolAutoTech Ltd.', '3456789012', 'Poland', 'Poznan', '60-001', 'ul. Motoryzacyjna 23', 'info@polautotech.com', '+48345678901', 'www.polautotech.com', true, false, 'BY_CARD', 'TWENTY_THREE', 'William Smith', 'william.smith@example.com', '+48345678901'),
-#     ('PolHomeDecor Ltd.', '4567890123', 'Poland', 'Lublin', '20-001', 'ul. Dekoracyjna 24', 'info@polhomedecor.com', '+48456789012', 'www.polhomedecor.com', true, false, 'SEVEN_DAY_TRANSFER', 'ZERO', 'Sophia Johnson', 'sophia.johnson@example.com', '+48456789012'),
-#     ('PolTechSupport Ltd.', '5678901234', 'Poland', 'Wroclaw', '50-001', 'ul. Techniczna 25', 'info@poltechsupport.com', '+48567890123', 'www.poltechsupport.com', true, false, 'THREE_DAY_TRANSFER', 'TWENTY_THREE', 'Oliver Smith', 'oliver.smith@example.com', '+48567890123'),
-#     ('PolGardenSupplies Ltd.', '6789012345', 'Poland', 'Gdansk', '80-001', 'ul. Ogrodowa 26', 'info@polgardensupplies.com', '+48678901234', 'www.polgardensupplies.com', true, false, 'CONFIRMED_TRANSFER', 'TWENTY_THREE', 'Mia Johnson', 'mia.johnson@example.com', '+48678901234'),
-#     ('PolHealthCare Ltd.', '7890123456', 'Poland', 'Szczecin', '70-001', 'ul. Medyczna 27', 'info@polhealthcare.com', '+48789012345', 'www.polhealthcare.com', true, false, 'FOURTEEN_DAY_TRANSFER', 'ZERO', 'James Smith', 'james.smith@example.com', '+48789012345'),
-#     ('PolFashionHouse Ltd.', '8901234567', 'Poland', 'Katowice', '40-001', 'ul. Modowa 28', 'info@polfashionhouse.com', '+48890123456', 'www.polfashionhouse.com', true, false, 'CASH', 'TWENTY_THREE', 'Charlotte Johnson', 'charlotte.johnson@example.com', '+48890123456'),
-#     ('PolIndustrialSolutions Ltd.', '9012345678', 'Poland', 'Bialystok', '15-001', 'ul. Przemysłowa 29', 'info@polindustrialsolutions.com', '+48901234567', 'www.polindustrialsolutions.com', true, false, 'BY_CARD', 'TWENTY_THREE', 'Amelia Smith', 'amelia.smith@example.com', '+48901234567'),
-#     ('PolTechInnovations Ltd.', '0123456789', 'Poland', 'Lodz', '90-001', 'ul. Innowacyjna 30', 'info@poltechinnovations.com', '+48012345678', 'www.poltechinnovations.com', true, false, 'CONFIRMED_TRANSFER', 'ZERO', 'Daniel Johnson', 'daniel.johnson@example.com', '+48012345678'),
-#     ('PolConstructionMaterials Ltd.', '1234567890', 'Poland', 'Bydgoszcz', '85-001', 'ul. Budowlana 31', 'info@polconstructionmaterials.com', '+48123456789', 'www.polconstructionmaterials.com', true, false, 'SEVEN_DAY_TRANSFER', 'TWENTY_THREE', 'Sophie Smith', 'sophie.smith@example.com', '+48123456789');
-
+#     ('ABC123', '1HGCM8A633A004352', 'Toyota', 'Camry', '2010', 150000, 'PETROL', 'AUTOMATIC', 'Excellent condition, one owner, regular maintenance', 2),
+#     ('DEF456', '3VWRC7AK99M049509', 'Volkswagen', 'Jetta', '2015', 80000, 'DIESEL', 'MANUAL', 'Low mileage, good fuel efficiency', 2),
+#     ('GHI789', '5YFBURAE8EP066747', 'Toyota', 'Corolla', '2018', 40000, 'PETROL', 'AUTOMATIC', 'Like new, accident-free', 3),
+#     ('JKL012', '1G1BC5AM6G7265615', 'Chevrolet', 'Cruze', '2016', 90000, 'PETROL', 'MANUAL', 'Sporty look, great handling', 3),
+#     ('MNO345', '2C3CCAAG5KH532744', 'Chrysler', '300', '2019', 30000, 'PETROL', 'AUTOMATIC', 'Luxurious interior, powerful engine', 4),
+#     ('PQR678', 'JHMGE8A39CC006098', 'Honda', 'Fit', '2012', 120000, 'PETROL', 'SEMI_AUTOMATIC', 'Compact design, reliable performance', 4),
+#     ('STU901', '1FADP3A20GL288165', 'Ford', 'Focus', '2014', 95000, 'PETROL', 'MANUAL', 'Comfortable ride, spacious interior', 4),
+#     ('VWX234', 'WAUZZZAE84A358933', 'Audi', 'A4', '2005', 180000, 'DIESEL', 'AUTOMATIC', 'Solid build quality, premium features', 4),
+#     ('YZA567', '1FTFW1AF0EKE42644', 'Ford', 'F-150', '2017', 70000, 'PETROL', 'AUTOMATIC', 'Robust truck, towing capabilities', 5),
+#     ('BCD890', '5YJSA1A14FF083122', 'Tesla', 'Model S', '2019', 25000, 'ELECTRIC', 'AUTOMATIC', 'Cutting-edge electric vehicle technology', 5);

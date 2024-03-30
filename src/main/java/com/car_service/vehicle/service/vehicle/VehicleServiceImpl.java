@@ -1,5 +1,9 @@
 package com.car_service.vehicle.service.vehicle;
 
+import com.car_service.customer.model.customer.domain.Customer;
+import com.car_service.customer.service.customer.CustomerService;
+import com.car_service.customer.service.customer.dto.CustomerDto;
+import com.car_service.customer.service.customer.mapper.CustomerMapper;
 import com.car_service.exceptions.RegistrationNumberAlreadyExistsException;
 import com.car_service.exceptions.ResourceNotFoundException;
 import com.car_service.exceptions.VINAlreadyExistsException;
@@ -25,6 +29,8 @@ public class VehicleServiceImpl implements VehicleService {
 
     private final VehicleRepository vehicleRepository;
     private final VehicleMapper vehicleMapper;
+    private final CustomerService customerService;
+    private final CustomerMapper customerMapper;
 
     @Override
     public List<VehicleDto> findAllVehicles() {
@@ -40,6 +46,16 @@ public class VehicleServiceImpl implements VehicleService {
                 .orElseThrow(() -> new ResourceNotFoundException("Vehicle", "id", Long.toString(id)));
         log.info("====>>>> findVehicleById(" + id + ") execution.");
         return vehicleMapper.mapToVehicleDto(vehicle);
+    }
+
+    @Override
+    public List<VehicleDto> findVehicleByCustomerId(Long id) {
+        CustomerDto customerDto = customerService.findCustomerById(id);
+        Customer customer = customerMapper.mapToCustomer(customerDto);
+        log.info("====>>>> findVehicleByCustomerId(" + id + ") execution.");
+        return vehicleRepository.findVehicleByCustomer(customer).stream()
+                .map(vehicleMapper::mapToVehicleDto)
+                .collect(Collectors.toList());
     }
 
     @Override

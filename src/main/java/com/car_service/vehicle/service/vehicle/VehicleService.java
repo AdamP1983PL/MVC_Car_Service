@@ -11,6 +11,8 @@ public interface VehicleService {
 
     VehicleDto findVehicleById(Long id);
 
+    List<VehicleDto> findVehicleByCustomerId(Long id);
+
     VehicleDto findVehicleByVIN(String vin);
 
     VehicleDto findVehicleByRegistrationNumber(String registrationNumber);

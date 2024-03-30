@@ -5,6 +5,7 @@
 </head>
 <body>
 <nav th:replace="~{fragments/navigation :: nav}"></nav>
+<div th:replace="~{fragments/user-role-data :: user-data}"></div>
 <br>
 <div class="container row col-md-6 offset-md-3">
     <div calss="card">
@@ -80,6 +81,14 @@
                            type="text" id="description3" name="description3" placeholder="Optional description">
                     <p th:if="${#fields.hasErrors('description3')}" class="text-danger"
                        th:errors="*{description3}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="dateTimeDeadline" class="form-label">Deadline</label>
+                    <input class="form-control" th:field="*{dateTimeDeadline}"
+                           type="datetime-local" id="dateTimeDeadline" name="dateTimeDeadline"
+                           placeholder="Enter deadline date-time">
+                    <p th:if="${#fields.hasErrors('dateTimeDeadline')}" class="text-danger"
+                       th:errors="*{dateTimeDeadline}"></p>
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-primary" type="submit">Save Service Order</button>

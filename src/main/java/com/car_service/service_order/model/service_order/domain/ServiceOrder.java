@@ -32,7 +32,7 @@ public class ServiceOrder {
     @Column(name = "DATE_TIME_UPDATED")
     private LocalDateTime dateTimeUpdated;
 
-    @Column(name = "DATE_TIME_DEADLINE", nullable = false)
+    @Column(name = "DATE_TIME_DEADLINE")
     private LocalDateTime dateTimeDeadline;
 
     @Column(name = "CUSTOMER_ID", nullable = false)

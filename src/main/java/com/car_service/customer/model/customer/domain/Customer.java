@@ -57,9 +57,7 @@ public class Customer {
     private String contactPersonEmail;
     @Column(name = "CONTACT_PERSON_PHONE", nullable = false)
     private String contactPersonPhone;
-//    @OneToMany(mappedBy = "customer")
-//    private List<Vehicle> vehicles;
 
 }
 
-// todo add hibernate mappings
+

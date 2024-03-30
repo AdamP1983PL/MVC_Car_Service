@@ -78,6 +78,13 @@ public class ServiceOrderThymeleafController {
     public String listServiceOrderDetails(@PathVariable("id") Long id, Model model) {
         ServiceOrderDto serviceOrderDetails = serviceOrderService.findServiceOrderById(id);
         model.addAttribute("serviceOrderDetails", serviceOrderDetails);
+
+        CustomerDto customerDto = customerService.findCustomerById(serviceOrderDetails.getCustomerId());
+        model.addAttribute("customerDto", customerDto);
+
+        VehicleDto vehicleDto = vehicleService.findVehicleById(serviceOrderDetails.getVehicleId());
+        model.addAttribute("vehicleDto", vehicleDto);
+
         log.info("====>>>> listServiceOrderDetails(" + id + ") execution.");
         return "/service_order/service-order-details";
     }

@@ -3,10 +3,14 @@ package com.car_service.customer.service.customer.dto;
 
 import com.car_service.customer.model.enums.PaymentMethod;
 import com.car_service.customer.model.enums.TaxValue;
+import com.car_service.vehicle.model.vehicle.domain.Vehicle;
+import com.car_service.vehicle.service.vehicle.dto.VehicleDto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+
+import java.util.List;
 
 
 @Getter

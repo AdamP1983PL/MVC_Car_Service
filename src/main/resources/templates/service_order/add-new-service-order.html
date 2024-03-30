@@ -14,14 +14,6 @@
         <div class="card-body">
             <form action="#" method="post" role="form"
                   th:action="@{/service-order/save}" th:object="${serviceOrderDto}">
-                <!--                <div class="form-group mb-3">-->
-                <!--                    <label for="dateTimeDeadline" class="form-label">Deadline</label>-->
-                <!--                    <input class="form-control" th:field="*{dateTimeDeadline}"-->
-                <!--                           type="datetime-local" id="dateTimeDeadline" name="dateTimeDeadline"-->
-                <!--                           placeholder="Enter deadline date-time">-->
-                <!--                    <p th:if="${#fields.hasErrors('dateTimeDeadline')}" class="text-danger"-->
-                <!--                       th:errors="*{dateTimeDeadline}"></p>-->
-                <!--                </div>-->
                 <div class="form-group mb-3">
                     <label for="customerId">Customer Id by name: </label>
                     <select name="customerId" id="customerId">
@@ -52,14 +44,14 @@
                         </select>
                     </p>
                 </div>
-                <div class="form-group mb-3">
-                    <p> Is Service Order Closed:
-                        <select name="option">
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                        </select>
-                    </p>
-                </div>
+<!--                <div class="form-group mb-3">-->
+<!--                    <p> Is Service Order Closed:-->
+<!--                        <select name="option">-->
+<!--                            <option value="true">True</option>-->
+<!--                            <option value="false">False</option>-->
+<!--                        </select>-->
+<!--                    </p>-->
+<!--                </div>-->
                 <div class="form-group mb-3">
                     <label for="description1" class="form-label">Description 1</label>
                     <input class="form-control" th:field="*{description1}"
@@ -81,6 +73,14 @@
                     <p th:if="${#fields.hasErrors('description3')}" class="text-danger"
                        th:errors="*{description3}"></p>
                 </div>
+                <div class="form-group mb-3">
+                    <label for="dateTimeDeadline" class="form-label">Deadline</label>
+                    <input class="form-control" th:field="*{dateTimeDeadline}"
+                           type="datetime-local" id="dateTimeDeadline" name="dateTimeDeadline"
+                           placeholder="Enter deadline date-time">
+                    <p th:if="${#fields.hasErrors('dateTimeDeadline')}" class="text-danger"
+                       th:errors="*{dateTimeDeadline}"></p>
+                </div>
                 <div class="mb-3">
                     <button class="btn btn-primary" type="submit">Save Service Order</button>
                 </div>
@@ -101,3 +101,5 @@
 </div>
 </body>
 </html>
+
+<!--todo restrict vehicles list that it only contains vehicles from a given customer-->

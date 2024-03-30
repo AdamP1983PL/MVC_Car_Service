@@ -21,6 +21,7 @@
             <th>VIN</th>
             <th>Manufacturer</th>
             <th>Model</th>
+            <th>Customer Id</th>
             <th class="text-center">Details</th>
             <th class="text-center">Edit</th>
             <th class="text-center">Delete</th>
@@ -33,6 +34,7 @@
             <td th:text="*{vehicleIdentificationNumber}"></td>
             <td th:text="*{manufacturer}"></td>
             <td th:text="*{model}"></td>
+            <td th:text="*{customerId}"></td>
             <td class="text-center">
                 <a th:href="@{/vehicle/details/{registration}
                   (registration=${vehicle.registrationNumber})}"

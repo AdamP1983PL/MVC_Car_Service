@@ -5,6 +5,7 @@
 </head>
 <body>
 <nav th:replace="~{fragments/navigation :: nav}"></nav>
+<div th:replace="~{fragments/user-role-data :: user-data}"></div>
 <br>
 <div class="container row col-md-6 offset-md-3">
     <div class="card">
@@ -27,10 +28,28 @@
                         .format(serviceOrderDetails.dateTimeDeadline, 'dd-MM-yyyy HH:mm')}"></span>
                         <hr>
                         Customer Id: <span th:text="${serviceOrderDetails.customerId}"></span><br>
-                        Customer name: <span th:text="${serviceOrderDetails.customerName}"></span>
+                        Customer Name: <span th:text="${serviceOrderDetails.customerName}"></span><br>
+                        Customer Tax Number: <span th:text="${customerDto.taxNumber}"></span><br>
+                        Customer Email: <span th:text="${customerDto.customerEmail}"></span><br>
+                        Customer Phone: <span th:text="${customerDto.customerPhoneNumber}"></span><br>
+                        Customer Is Active: <span th:text="${customerDto.isActive()}"></span><br>
+                        Customer Payment is Blocked: <span th:text="${customerDto.paymentIsBlocked}"></span><br>
+                        Customer Payment Method: <span th:text="${customerDto.paymentMethod}"></span><br>
+                        Customer Tax Value: <span th:text="${customerDto.taxValue}"></span><br>
+                        Contact Person Name: <span th:text="${customerDto.contactPersonName}"></span><br>
+                        Contact Person Email: <span th:text="${customerDto.contactPersonEmail}"></span><br>
+                        Contact Person Phone: <span th:text="${customerDto.contactPersonPhone}"></span><br>
                         <hr>
                         Vehicle Id: <span th:text="${serviceOrderDetails.vehicleId}"></span><br>
-                        Vehicle reg.: <span th:text="${serviceOrderDetails.vehicleRegistrationNumber}"></span>
+                        Vehicle Reg.: <span th:text="${serviceOrderDetails.vehicleRegistrationNumber}"></span><br>
+                        Vehicle VIN.: <span th:text="${vehicleDto.getVehicleIdentificationNumber()}"></span><br>
+                        Vehicle Manufacturer.: <span th:text="${vehicleDto.getManufacturer()}"></span><br>
+                        Vehicle Model.: <span th:text="${vehicleDto.getModel()}"></span><br>
+                        Vehicle Production Year.: <span th:text="${vehicleDto.getProductionYear()}"></span><br>
+                        Vehicle Mileage.: <span th:text="${vehicleDto.getMileage()}"></span><br>
+                        Vehicle Engine.: <span th:text="${vehicleDto.getEngineType()}"></span><br>
+                        Vehicle Gearbox.: <span th:text="${vehicleDto.getGearboxType()}"></span><br>
+                        Vehicle Additional info.: <span th:text="${vehicleDto.getAdditionalInformation()}"></span>
                         <hr>
                         Order status: <span th:text="${serviceOrderDetails.orderStatus}"></span>
                         <hr>

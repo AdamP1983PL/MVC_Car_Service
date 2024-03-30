@@ -1,6 +1,8 @@
 package com.car_service.vehicle.controller;
 
 
+import com.car_service.customer.service.customer.CustomerService;
+import com.car_service.customer.service.customer.dto.CustomerDto;
 import com.car_service.vehicle.service.vehicle.VehicleServiceImpl;
 import com.car_service.vehicle.service.vehicle.dto.VehicleDto;
 import jakarta.validation.Valid;
@@ -21,6 +23,7 @@ import java.util.List;
 public class VehicleThymeleafController {
 
     private final VehicleServiceImpl vehicleServiceImpl;
+    private final CustomerService customerService;
 
     @GetMapping("/page")
     public String showVehiclePage() {
@@ -41,6 +44,10 @@ public class VehicleThymeleafController {
     public String addVehicle(Model model) {
         VehicleDto vehicleDto = new VehicleDto();
         model.addAttribute("vehicleDto", vehicleDto);
+
+        List<CustomerDto> customers = customerService.findAllCustomers();
+        model.addAttribute("customers", customers);
+
         log.info("====>>>> addVehicle() execution");
         return "vehicle/add-new-vehicle";
     }
@@ -69,6 +76,7 @@ public class VehicleThymeleafController {
     public String editVehicle(@PathVariable("registration") String registration, Model model) {
         VehicleDto vehicleDto = vehicleServiceImpl.findVehicleByRegistrationNumber(registration);
         model.addAttribute("vehicleDto", vehicleDto);
+
         log.info("====>>>> editVehicle() execution");
         return "vehicle/edit-vehicle";
     }

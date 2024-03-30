@@ -37,7 +37,6 @@ public class VehicleDto {
     private GearboxType gearboxType;
     @Size(max = 255)
     private String additionalInformation;
+    private Long customerId;
 
 }
-
-// todo add swagger documentation

@@ -1,6 +1,7 @@
 package com.car_service.customer.service.customer;
 
 import com.car_service.customer.model.customer.domain.Customer;
+
 import com.car_service.customer.model.customer.repository.CustomerRepository;
 import com.car_service.customer.model.enums.PaymentMethod;
 import com.car_service.customer.model.enums.TaxValue;
@@ -34,7 +35,6 @@ class CustomerServiceImplTest {
     @BeforeEach()
     void initialize() {
         customer = Customer.builder()
-                .id(1L)
                 .customerName("test customer name")
                 .taxNumber("1112223344")
                 .country("country")
