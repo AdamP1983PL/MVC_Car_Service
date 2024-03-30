@@ -19,11 +19,9 @@ public interface ServiceOrderService {
 
     ServiceOrderDto createServiceOrder(ServiceOrderDto serviceOrderDto);
 
-    ServiceOrderDto updateServiceOrder(ServiceOrderDto serviceOrderDto, Long id);
+    ServiceOrderDto updateServiceOrder(ServiceOrderDto serviceOrderDto);
 
-    ServiceOrderDto updateServiceOrderStatus(ServiceOrderDto serviceOrderDto, Long id);
-
-    ServiceOrderDto mvcUpdateServiceOrder(ServiceOrderDto serviceOrderDto);
+    ServiceOrderDto updateServiceOrderStatus(ServiceOrderDto serviceOrderDto);
 
     void deleteServiceOrder(Long id);
 }

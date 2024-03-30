@@ -22,13 +22,6 @@
                 <!--                    <p th:if="${#fields.hasErrors('dateTimeDeadline')}" class="text-danger"-->
                 <!--                       th:errors="*{dateTimeDeadline}"></p>-->
                 <!--                </div>-->
-                <!--                <div class="form-group mb-3">-->
-                <!--                    <label for="customerId" class="form-label">Customer Id</label>-->
-                <!--                    <input class="form-control" th:field="*{customerId}"-->
-                <!--                           type="text" id="customerId" name="customerId" placeholder="Enter Customer Id">-->
-                <!--                    <p th:if="${#fields.hasErrors('customerId')}" class="text-danger"-->
-                <!--                       th:errors="*{customerId}"></p>-->
-                <!--                </div>-->
                 <div class="form-group mb-3">
                     <label for="customerId">Customer Id by name: </label>
                     <select name="customerId" id="customerId">
@@ -38,14 +31,6 @@
                         </option>
                     </select>
                 </div>
-
-                <!--                <div class="form-group mb-3">-->
-                <!--                    <label for="customerName" class="form-label">Customer Name</label>-->
-                <!--                    <input class="form-control" th:field="*{customerName}"-->
-                <!--                           type="text" id="customerName" name="customerName" placeholder="Enter Customer Name">-->
-                <!--                    <p th:if="${#fields.hasErrors('customerName')}" class="text-danger"-->
-                <!--                       th:errors="*{customerName}"></p>-->
-                <!--                </div>-->
                 <div class="form-group mb-3">
                     <label for="vehicleId">Vehicle Id by registration number: </label>
                     <select name="vehicleId" id="vehicleId">
@@ -55,26 +40,11 @@
                         </option>
                     </select>
                 </div>
-                <!--                <div >-->
-                <!--                    <label for="vehicleId" class="form-label">Vehicle Id</label>-->
-                <!--                    <input class="form-control" th:field="*{vehicleId}"-->
-                <!--                           type="text" id="vehicleId" name="vehicleId" placeholder="Enter Vehicle Id">-->
-                <!--                    <p th:if="${#fields.hasErrors('vehicleId')}" class="text-danger"-->
-                <!--                       th:errors="*{vehicleId}"></p>-->
-                <!--                </div>-->
-                <!--                <div class="form-group mb-3">-->
-                <!--                    <label for="vehicleRegistrationNumber" class="form-label">Vehicle Registration</label>-->
-                <!--                    <input class="form-control" th:field="*{vehicleRegistrationNumber}"-->
-                <!--                           type="text" id="vehicleRegistrationNumber" name="vehicleRegistrationNumber"-->
-                <!--                           placeholder="Enter Vehicle Registration">-->
-                <!--                    <p th:if="${#fields.hasErrors('vehicleRegistrationNumber')}" class="text-danger"-->
-                <!--                       th:errors="*{vehicleRegistrationNumber}"></p>-->
-                <!--                </div>-->
                 <div class="form-group mb-3">
                     <p> Select Order Status:
                         <select name="OrderStatus">
                             <option
-                                    th:each="orderStatus : ${T(com.service_order.model.enums.OrderStatus).values()}"
+                                    th:each="orderStatus : ${T(com.car_service.service_order.model.enums.OrderStatus).values()}"
                                     th:text="${orderStatus.displayText}"
                                     th:value="${orderStatus.name()}"
                                     th:selected="${orderStatus.name() eq 'open'}">
@@ -116,18 +86,18 @@
                 </div>
             </form>
             <div class="mb-3">
-                <h5>
-                    <a th:href="@{/service-order/find-all}">Back to Service Orders List</a>
-                </h5>
+                <a th:href="@{/service-order/find-all}">
+                    <h6>Back to Service Orders List</h6>
+                </a>
             </div>
+            <hr>
             <div class="mb-3">
-                <h5>
-                    <a href="">Back to Home Page</a>
-                </h5>
+                <a th:href="@{/}">
+                    <h6>Back to Home Page</h6>
+                </a>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>

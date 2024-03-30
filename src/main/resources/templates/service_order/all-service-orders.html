@@ -30,7 +30,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="serviceOrder : ${serviceOrderDtoList}" th:object="${serviceOrder}">
+        <tr th:each="serviceOrder : ${serviceOrders}" th:object="${serviceOrder}">
             <td th:text="*{id}"></td>
             <td th:text="*{#temporals.format(dateTimeCreated, 'dd-MM-yyyy HH:mm')}"></td>
             <td th:text="*{#temporals.format(dateTimeUpdated, 'dd-MM-yyyy HH:mm')}"></td>
@@ -56,29 +56,27 @@
         </tr>
         </tbody>
     </table>
-    <div>
-        <h5>
-            <a th:href="@{/service-order/create-new}">Add New Service Order</a>
-        </h5>
+    <div class="mb-3">
+        <a th:href="@{/service-order/add-service-order}">
+            <h6>Add New Service Order</h6>
+        </a>
     </div>
-<!--    <div>-->
-<!--        <h5>-->
-<!--            <a href="">Back to Home Page</a>-->
-<!--        </h5>-->
-<!--    </div>-->
+    <div class="mb-3">
+        <a th:href="@{/customer/}">
+            <h6>All Customers List</h6>
+        </a>
+    </div>
+    <div class="mb-3">
+        <a th:href="@{/vehicle/all-vehciles}">
+            <h6>All Vehicles List</h6>
+        </a>
+    </div>
     <hr>
-    <div>
-        <h5>
-            <a th:href="@{/service-order/find-all-customers}">All Customers List</a>
-        </h5>
+    <div class="mb-3">
+        <a th:href="@{/}">
+            <h6>Back to Home Page</h6>
+        </a>
     </div>
-    <div>
-        <h5>
-            <a th:href="@{/service-order/find-all-vehicles}">All Vehicles List</a>
-        </h5>
-    </div>
-
 </div>
-
 </body>
 </html>

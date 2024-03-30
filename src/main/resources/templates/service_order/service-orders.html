@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{fragments/head-content :: head-content}"></div>
+</head>
+<body>
+<nav th:replace="~{fragments/navigation :: nav}"></nav>
+<div th:replace="~{fragments/user-role-data :: user-data}"></div>
+<div class="container">
+    <div class="text-center">
+        <br>
+        <h2>Manage Service Orders</h2>
+    </div>
+    <hr>
+    <br>
+    <div class="text-center">
+        <div>
+            <a th:href="@{/service-order/}">
+                <h4>Show all Service Orders</h4>
+            </a>
+        </div>
+        <br>
+        <div>
+            <a href="@{}">
+                <h4>Show all Service Orders By Customer</h4>
+            </a>
+        </div>
+        <br>
+        <div>
+            <a href="@{}">
+                <h4>Show Service Orders History by Vehicle</h4>
+            </a>
+        </div>
+        <br>
+        <div>
+            <a th:href="@{/service-order/add-service-order}">
+                <h4>Add new Service Order</h4>
+            </a>
+        </div>
+        <br>
+        <hr>
+        <div class="mb-3">
+            <a th:href="@{/}">
+                <h6>Back to Home Page</h6>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

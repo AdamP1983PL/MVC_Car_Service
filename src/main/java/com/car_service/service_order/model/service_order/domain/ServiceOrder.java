@@ -32,32 +32,25 @@ public class ServiceOrder {
     @Column(name = "DATE_TIME_UPDATED")
     private LocalDateTime dateTimeUpdated;
 
-    @Column(name = "DATE_TIME_DEADLINE")
-//            , nullable = false)
+    @Column(name = "DATE_TIME_DEADLINE", nullable = false)
     private LocalDateTime dateTimeDeadline;
 
-    @Column(name = "CUSTOMER_ID")
-//    , nullable = false)
+    @Column(name = "CUSTOMER_ID", nullable = false)
     private Long customerId;
 
-    @Column(name = "CUSTOMER_NAME")
-//    , nullable = false)
+    @Column(name = "CUSTOMER_NAME", nullable = false)
     private String customerName;
 
-    @Column(name = "VEHICLE_ID")
-//    , nullable = false)
+    @Column(name = "VEHICLE_ID", nullable = false)
     private Long vehicleId;
 
-    @Column(name = "VEHICLE_REGISTRATION")
-//    , nullable = false)
+    @Column(name = "VEHICLE_REGISTRATION", nullable = false)
     private String vehicleRegistrationNumber;
 
-    @Column(name = "ORDER_STATUS")
-//    , nullable = false)
+    @Column(name = "ORDER_STATUS", nullable = false)
     private OrderStatus orderStatus;
 
-    @Column(name = "DESC_1")
-//    , nullable = false)
+    @Column(name = "DESC_1", nullable = false)
     private String description1;
 
     @Column(name = "DESC_2")

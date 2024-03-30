@@ -3,8 +3,11 @@ package com.car_service.customer.model.customer.domain;
 
 import com.car_service.customer.model.enums.PaymentMethod;
 import com.car_service.customer.model.enums.TaxValue;
+import com.car_service.vehicle.model.vehicle.domain.Vehicle;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 
 @Getter
@@ -54,6 +57,8 @@ public class Customer {
     private String contactPersonEmail;
     @Column(name = "CONTACT_PERSON_PHONE", nullable = false)
     private String contactPersonPhone;
+//    @OneToMany(mappedBy = "customer")
+//    private List<Vehicle> vehicles;
 
 }
 
