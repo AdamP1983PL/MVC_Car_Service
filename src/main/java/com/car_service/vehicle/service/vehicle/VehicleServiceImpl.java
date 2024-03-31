@@ -13,6 +13,9 @@ import com.car_service.vehicle.service.vehicle.dto.VehicleDto;
 import com.car_service.vehicle.service.vehicle.mapper.VehicleMapper;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -106,6 +109,7 @@ public class VehicleServiceImpl implements VehicleService {
                     veh.setEngineType(vehicleDto.getEngineType());
                     veh.setGearboxType(vehicleDto.getGearboxType());
                     veh.setAdditionalInformation(vehicleDto.getAdditionalInformation());
+                    veh.setCustomer(vehicleMapper.getCustomerByVehicle(vehicleDto));
                     return vehicleRepository.save(veh);
                 })
                 .orElseThrow(() -> new ResourceNotFoundException("Vehicle", "Registration Number", registrationNumber));
@@ -127,6 +131,13 @@ public class VehicleServiceImpl implements VehicleService {
 
         vehicleRepository.delete(vehicle);
         log.info("====>>>> deleteVehicleByRegistrationNumber(" + registrationNumber + ") execution.");
+    }
+
+    @Override
+    public Page<VehicleDto> findVehiclesPaginated(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return vehicleRepository.findAll(pageable)
+                .map(vehicleMapper::mapToVehicleDto);
     }
 
 }

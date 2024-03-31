@@ -40,7 +40,7 @@ public class Vehicle {
     @Column(name = "ADDITIONAL_INFO")
     private String additionalInformation;
     @ManyToOne
-    @JoinColumn(name = "CUSTOMER_ID")
+    @JoinColumn(name = "CUSTOMER")
     private Customer customer;
 
 }

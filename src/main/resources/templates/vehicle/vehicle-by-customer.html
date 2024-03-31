@@ -1,10 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <div th:replace="~{fragments/head-content :: head-content}"></div>
 </head>
 <body>
-$END$
+<nav th:replace="~{fragments/navigation :: nav}"></nav>
+<div th:replace="~{fragments/user-role-data :: user-data}"></div>
+<div class="container">
+    <div class="text-center">
+        <br>
+        <h2>Vehicle List By Customer</h2>
+    </div>
+    <hr>
+    <br>
+    <table class="table table-striped table-hover table-bordered table-primary">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Registration Number</th>
+            <th>VIN</th>
+            <th>Manufacturer</th>
+            <th>Model</th>
+            <th>Customer Id</th>
+            <th class="text-center">Details</th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="vehicle : ${vehiclesByCustomer}" th:object="${vehicle}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{registrationNumber}"></td>
+            <td th:text="*{vehicleIdentificationNumber}"></td>
+            <td th:text="*{manufacturer}"></td>
+            <td th:text="*{model}"></td>
+            <td th:text="*{customerId}"></td>
+            <td class="text-center">
+                <a th:href="@{/vehicle/details/{registration}
+                  (registration=${vehicle.registrationNumber})}"
+                   class="btn btn-primary btn-sm">Details</a>
+            </td>
+            <td class="text-center">
+                <a th:href="@{/vehicle/edit/{registration}(registration=${vehicle.registrationNumber})}"
+                   class="btn btn-primary btn-sm">Edit</a>
+            </td>
+            <td class="text-center">
+                <a th:href="@{/vehicle/delete/{registration}(registration=${vehicle.registrationNumber})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Delete this Vehicle?'))) return false">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="mb-3">
+        <a th:href="@{/vehicle/add-vehicle}">
+            <h6>Add New Vehicle</h6>
+        </a>
+    </div>
+    <div class="mb-3">
+        <a th:href="@{/vehicle/by-customer}">
+            <h6>Back to Customer Selection Page</h6>
+        </a>
+    </div>
+    <div class="mb-3">
+        <a th:href="@{/service-order/}">
+            <h6>Proceed to Service Orders List</h6>
+        </a>
+    </div>
+    <div class="mb-3">
+        <a th:href="@{/}">
+            <h6>Back to Home Page</h6>
+        </a>
+    </div>
+    <hr>
+</div>
 </body>
 </html>

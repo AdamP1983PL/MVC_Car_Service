@@ -3,14 +3,15 @@ package com.car_service.customer.controller;
 
 import com.car_service.customer.service.customer.CustomerServiceImpl;
 import com.car_service.customer.service.customer.dto.CustomerDto;
+import com.car_service.vehicle.service.vehicle.dto.VehicleDto;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -30,10 +31,18 @@ public class CustomerThymeleafController {
 
     @GetMapping("/")
     public String listAllCustomers(Model model) {
+//        List<CustomerDto> customers = customerServiceImpl.findAllCustomers();
+//        model.addAttribute("customers", customers);
+//        log.info("====>>>> listAllCustomers() execution.");
+        return findAllPaginated(1, model);
+    }
+
+    @GetMapping("/all-customers-one-page")
+    public String listAllCustomersOnePage(Model model) {
         List<CustomerDto> customers = customerServiceImpl.findAllCustomers();
         model.addAttribute("customers", customers);
         log.info("====>>>> listAllCustomers() execution.");
-        return "customer/customers-list";
+        return "customer/customers-list-one-page";
     }
 
     @GetMapping("/add-customer")
@@ -90,6 +99,22 @@ public class CustomerThymeleafController {
         customerServiceImpl.deleteCustomerById(id);
         log.info("====>>>> deleteCustomer(id: " + id + ") execution.");
         return "redirect:/customer/";
+    }
+
+    @GetMapping("/all-customers-paginated/{pageNo}")
+    public String findAllPaginated(@PathVariable("pageNo") Integer pageNo, Model model) {
+        int pageSize = 5;
+
+        Page<CustomerDto> page = customerServiceImpl.findCustomersPaginated(pageNo, pageSize);
+        List<CustomerDto> customers = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("customers", customers);
+
+        log.info("====>>>>  findAllPaginated() execution");
+        return "customer/customers-list";
     }
 
 }

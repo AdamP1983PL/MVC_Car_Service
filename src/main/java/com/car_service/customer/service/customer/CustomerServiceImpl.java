@@ -9,9 +9,11 @@ import com.car_service.exceptions.ResourceNotFoundException;
 import com.car_service.exceptions.TaxNumberAlreadyExistsException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -114,6 +116,13 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setContactPersonName(customerDto.getContactPersonName());
         customer.setContactPersonEmail(customerDto.getContactPersonEmail());
         customer.setContactPersonPhone(customerDto.getContactPersonPhone());
+    }
+
+    @Override
+    public Page<CustomerDto> findCustomersPaginated(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return customerRepository.findAll(pageable)
+                .map(customerMapper::mapToCustomerDto);
     }
 
 }

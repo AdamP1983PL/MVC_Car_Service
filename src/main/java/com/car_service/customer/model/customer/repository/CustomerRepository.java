@@ -2,6 +2,8 @@ package com.car_service.customer.model.customer.repository;
 
 
 import com.car_service.customer.model.customer.domain.Customer;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +16,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     List<Customer> findCustomerByCustomerNameContaining(String name);
 
     Optional<Customer> findCustomerByTaxNumber(String taxNumber);
+
+    Page<Customer> findAll(Pageable pageable);
 
 }

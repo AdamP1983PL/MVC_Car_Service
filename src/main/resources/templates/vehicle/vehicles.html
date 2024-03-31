@@ -16,12 +16,18 @@
     <div class="text-center">
         <div>
             <a th:href="@{/vehicle/all-vehicles}">
-                <h4>Show all Vehicles</h4>
+                <h4>Show all Vehicles Paginated</h4>
             </a>
         </div>
         <br>
         <div>
-            <a href="@{/vehicle/all-vehicles}">
+            <a th:href="@{/vehicle/all-vehicles-one-page}">
+                <h4>Show all Vehicles One Page</h4>
+            </a>
+        </div>
+        <br>
+        <div>
+            <a th:href="@{/vehicle/by-customer}">
                 <h4>Show all Vehicles By Customer</h4>
             </a>
         </div>

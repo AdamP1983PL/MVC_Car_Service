@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <div th:replace="~{fragments/head-content :: head-content}"></div>
 </head>
 <body>
-$END$
+<nav th:replace="~{fragments/navigation :: nav}"></nav>
+<div th:replace="~{fragments/user-role-data :: user-data}"></div>
+<div class="container row col-md-6 offset-md-3">
+    <div class="card">
+        <div class="card-header">
+            <h4>Select Customer</h4>
+        </div>
+        <form action="#" method="get" role="form"
+              th:action="@{/vehicle/by-customer/select/{id}}"
+              th:object="${customers}">
+            <div class="form-group mb-3">
+                <label for="customerId"><h5>Customer Id by name: </h5></label>
+                <select name="customerId" id="customerId">
+                    <option th:each="cust : ${customers}"
+                            th:value="${cust.id}"
+                            th:text="${cust.customerName}">Customer Name
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Select Customer</button>
+            </div>
+            <div class="mb-3">
+                <h5>
+                    <a th:href="@{/vehicle/all-vehicles}">Proceed to Vehicle List</a>
+                </h5>
+            </div>
+            <div class="mb-3">
+                <h5>
+                    <a th:href="@{/}">Back to Home Page</a>
+                </h5>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>

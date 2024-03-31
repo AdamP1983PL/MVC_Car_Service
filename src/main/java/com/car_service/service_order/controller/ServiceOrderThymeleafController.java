@@ -117,6 +117,7 @@ public class ServiceOrderThymeleafController {
         log.info("====>>>> updateServiceOrder(" + id + ") execution.");
         return "redirect:/service-order/";
     }
+    // todo update dateTimeDeadline doesn't work
 
     @GetMapping("/delete/{id}")
     public String deleteServiceOrder(@PathVariable("id") Long id) {

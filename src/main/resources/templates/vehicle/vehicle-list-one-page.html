@@ -52,32 +52,10 @@
         </tr>
         </tbody>
     </table>
-
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                 <a th:if="${currentPage != i}"
-                    th:href="@{'/vehicle/all-vehicles-paginated/' + ${i}}">[[${i}]]</a>
-                     <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
-                 </span>
-            </li>
-            <li class="page-item">
-                <a th:if="${currentPage < totalPages}"
-                   th:href="@{'/vehicle/all-vehicles-paginated/' + ${currentPage + 1}}">Next___</a>
-                <span th:unless="${currentPage < totalPages}">Next</span>
-            </li>
-            <li class="page-item">
-                <a th:if="${currentPage < totalPages}"
-                   th:href="@{'/vehicle/all-vehicles-paginated/' + ${totalPages}}">Last</a>
-                <span th:unless="${currentPage < totalPages}">Last</span>
-            </li>
-        </ul>
-    </nav>
     <div class="mb-3">
-        <a th:href="@{/vehicle/add-vehicle}">
-            <h6>Add New Vehicle</h6>
-        </a>
+            <a th:href="@{/vehicle/add-vehicle}">
+                <h6>Add New Vehicle</h6>
+            </a>
     </div>
     <div class="mb-3">
         <a th:href="@{/service-order/}">
