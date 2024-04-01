@@ -6,6 +6,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -28,6 +29,7 @@ public class VehicleDto {
     private String manufacturer;
     @NotEmpty(message = "Model should not be empty. Optionally: type \"unknown\".")
     private String model;
+    @Pattern(regexp = "^\\d{4}$", message = "Invalid production year. Please provide a year in the format yyyy.")
     private String productionYear;
     @Min(0)
     private double mileage;

@@ -35,6 +35,7 @@ public class VehicleThymeleafController {
 
     @GetMapping("/all-vehicles")
     public String listAllVehicles(Model model) {
+
         return findAllPaginated(1, model);
     }
 

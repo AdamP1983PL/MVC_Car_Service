@@ -3,7 +3,6 @@ package com.car_service.customer.controller;
 
 import com.car_service.customer.service.customer.CustomerServiceImpl;
 import com.car_service.customer.service.customer.dto.CustomerDto;
-import com.car_service.vehicle.service.vehicle.dto.VehicleDto;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,15 +24,14 @@ public class CustomerThymeleafController {
 
     @GetMapping("/page")
     public String showCustomerPage() {
+
         log.info("====>>>> showCustomerPage() execution.");
         return "customer/customers";
     }
 
     @GetMapping("/")
     public String listAllCustomers(Model model) {
-//        List<CustomerDto> customers = customerServiceImpl.findAllCustomers();
-//        model.addAttribute("customers", customers);
-//        log.info("====>>>> listAllCustomers() execution.");
+
         return findAllPaginated(1, model);
     }
 
@@ -41,6 +39,7 @@ public class CustomerThymeleafController {
     public String listAllCustomersOnePage(Model model) {
         List<CustomerDto> customers = customerServiceImpl.findAllCustomers();
         model.addAttribute("customers", customers);
+
         log.info("====>>>> listAllCustomers() execution.");
         return "customer/customers-list-one-page";
     }
@@ -49,6 +48,7 @@ public class CustomerThymeleafController {
     public String addCustomer(Model model) {
         CustomerDto customerDto = new CustomerDto();
         model.addAttribute("customerDto", customerDto);
+
         log.info("====>>>> addCustomer() execution");
         return "customer/add-new-customer";
     }
@@ -61,6 +61,7 @@ public class CustomerThymeleafController {
             return "customer/add-new-customer";
         }
         customerServiceImpl.createCustomer(customerDto);
+
         log.info("====>>>> saveNewCustomer() execution");
         return "redirect:/customer/";
     }
@@ -69,6 +70,7 @@ public class CustomerThymeleafController {
     public String listCustomerDetails(@PathVariable("id") Long id, Model model) {
         CustomerDto customerDetailsDto = customerServiceImpl.findCustomerById(id);
         model.addAttribute("customerDetailsDto", customerDetailsDto);
+
         log.info("====>>>> listCustomerDetails(id: " + id + ") execution");
         return "customer/customer-details";
     }
@@ -77,6 +79,8 @@ public class CustomerThymeleafController {
     public String editCustomer(@PathVariable("id") Long id, Model model) {
         CustomerDto customerDto = customerServiceImpl.findCustomerById(id);
         model.addAttribute("customerDto", customerDto);
+
+        log.info("====>>>> editCustomer(id: " + id + ") execution");
         return "customer/edit-customer";
     }
 
@@ -90,6 +94,7 @@ public class CustomerThymeleafController {
         }
         customerDto.setId(id);
         customerServiceImpl.mvcUpdateCustomer(customerDto);
+
         log.info("====>>>> updateCustomer(" + customerDto + ") execution");
         return "redirect:/customer/";
     }
@@ -97,6 +102,7 @@ public class CustomerThymeleafController {
     @GetMapping("/delete/{id}")
     public String mvcDeleteCustomer(@PathVariable("id") Long id) {
         customerServiceImpl.deleteCustomerById(id);
+
         log.info("====>>>> deleteCustomer(id: " + id + ") execution.");
         return "redirect:/customer/";
     }

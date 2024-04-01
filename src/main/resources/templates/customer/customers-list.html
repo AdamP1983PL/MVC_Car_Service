@@ -26,7 +26,6 @@
             <th>Active</th>
             <th class="text-center">Details</th>
             <th class="text-center">Edit</th>
-            <th class="text-center">Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -46,43 +45,30 @@
                 <a th:href="@{/customer/edit/{id}(id=${customer.id})}"
                    class="btn btn-primary bth-sm">Edit</a>
             </td>
-            <td class="text-center">
-                <a th:href="@{/customer/delete/{id}(id=${customer.id})}"
-                   class="btn btn-danger bth-sm"
-                   onclick="if (!(confirm('Delete this Vehicle?'))) return false">Delete</a>
-            </td>
         </tr>
         </tbody>
     </table>
-<!--    <nav aria-label="Page navigation example">-->
-<!--        <ul class="pagination">-->
-<!--            <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
-<!--            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-<!--            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--            <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
-<!--        </ul>-->
-<!--    </nav>-->
-<!--    <nav aria-label="Page navigation example">-->
-<!--        <ul class="pagination">-->
-<!--            <li class="page-item" th:class="${customers.first ? 'disabled' : ''}">-->
-<!--                <a class="page-link" th:href="@{'/customer/?page=' + (customers.number - 1) + '&size=' + customers.size}">Previous</a>-->
-<!--            </li>-->
-<!--            <li class="page-item" th:each="i : ${#numbers.sequence(0, customers.totalPages - 1)}">-->
-<!--                <a class="page-link" th:href="@{'/customer/?page=' + i + '&size=' + customers.size}" th:text="${i + 1}"></a>-->
-<!--            </li>-->
-<!--            <li class="page-item" th:class="${customers.last ? 'disabled' : ''}">-->
-<!--                <a class="page-link" th:href="@{'/customer/?page=' + (customers.number + 1) + '&size=' + customers.size}">Next</a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </nav>-->
-<!--    <div th:if="${customerPage.totalPages > 0}" class="pagination"-->
-<!--         th:each="pageNumber : ${pageNumbers}">-->
-<!--        <a th:href="@{/listBooks(size=${customerPage.size}, page=${pageNumber})}"-->
-<!--           th:text=${pageNumber}-->
-<!--           th:class="${pageNumber==customerPage.number + 1} ? active"></a>-->
-<!--    </div>-->
-
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                 <a th:if="${currentPage != i}"
+                    th:href="@{'/customer/all-customers-paginated/' + ${i}}">[[${i}]]</a>
+                     <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                 </span>
+            </li>
+            <li class="page-item">
+                <a th:if="${currentPage < totalPages}"
+                   th:href="@{'/customer/all-customers-paginated/' + ${currentPage + 1}}">Next___</a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </li>
+            <li class="page-item">
+                <a th:if="${currentPage < totalPages}"
+                   th:href="@{'/customer/all-customers-paginated/' + ${totalPages}}">Last</a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </li>
+        </ul>
+    </nav>
     <div class="mb-3">
         <a th:href="@{/customer/add-customer}">
             <h6>Add New Customer</h6>
@@ -100,6 +86,5 @@
     </div>
     <hr>
 </div>
-
 </body>
 </html>

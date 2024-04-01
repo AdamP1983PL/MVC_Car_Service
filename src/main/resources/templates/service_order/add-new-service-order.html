@@ -33,25 +33,17 @@
                     </select>
                 </div>
                 <div class="form-group mb-3">
-                    <p> Select Order Status:
-                        <select name="OrderStatus">
+                    <p> Default Order Status: OPEN
+                        <select name="OrderStatus"  style="display: none;">
                             <option
                                     th:each="orderStatus : ${T(com.car_service.service_order.model.enums.OrderStatus).values()}"
                                     th:text="${orderStatus.displayText}"
                                     th:value="${orderStatus.name()}"
-                                    th:selected="${orderStatus.name() eq 'open'}">
+                                    th:selected="${orderStatus.getDisplayText() eq 'open'}">
                             </option>
                         </select>
                     </p>
                 </div>
-<!--                <div class="form-group mb-3">-->
-<!--                    <p> Is Service Order Closed:-->
-<!--                        <select name="option">-->
-<!--                            <option value="true">True</option>-->
-<!--                            <option value="false">False</option>-->
-<!--                        </select>-->
-<!--                    </p>-->
-<!--                </div>-->
                 <div class="form-group mb-3">
                     <label for="description1" class="form-label">Description 1</label>
                     <input class="form-control" th:field="*{description1}"

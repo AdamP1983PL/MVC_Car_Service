@@ -3,11 +3,8 @@ package com.car_service.customer.model.customer.domain;
 
 import com.car_service.customer.model.enums.PaymentMethod;
 import com.car_service.customer.model.enums.TaxValue;
-import com.car_service.vehicle.model.vehicle.domain.Vehicle;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.List;
 
 
 @Getter
