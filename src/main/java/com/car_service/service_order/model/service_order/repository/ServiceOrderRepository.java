@@ -16,4 +16,3 @@ public interface ServiceOrderRepository extends JpaRepository<ServiceOrder, Long
 
 }
 
-// todo use JPQL

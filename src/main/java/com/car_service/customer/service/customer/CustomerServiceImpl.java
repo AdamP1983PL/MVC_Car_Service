@@ -23,13 +23,12 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
-
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
 
-
     @Override
     public List<CustomerDto> findAllCustomers() {
+
         log.info("====>>>> findAllCustomers() execution.");
         return customerRepository.findAll().stream()
                 .map(customerMapper::mapToCustomerDto)
@@ -62,8 +61,8 @@ public class CustomerServiceImpl implements CustomerService {
         if (customer.isPresent()) {
             throw new TaxNumberAlreadyExistsException("Tax number", customerDto.getTaxNumber());
         }
-
         Customer savedCustomer = customerRepository.save(customerMapper.mapToCustomer(customerDto));
+
         log.info("====>>>> createCustomer(" + customerDto.getCustomerName() + ") execution.");
         return customerMapper.mapToCustomerDto(savedCustomer);
     }
@@ -87,6 +86,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", Long.toString(customerDto.getId())));
         prepareUpdate(customerDto, customer);
         Customer savedCustomer = customerRepository.save(customer);
+
         log.info("====>>>> mvcUpdateCustomer(" + customerDto + ") execution.");
         return customerMapper.mapToCustomerDto(savedCustomer);
     }

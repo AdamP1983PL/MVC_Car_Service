@@ -56,5 +56,3 @@ public class Customer {
     private String contactPersonPhone;
 
 }
-
-

@@ -4,10 +4,8 @@ package com.car_service.service_order.controller;
 import com.car_service.customer.service.customer.CustomerService;
 import com.car_service.customer.service.customer.dto.CustomerDto;
 import com.car_service.service_order.service.ServiceOrderService;
-import com.car_service.service_order.service.ServiceOrderServiceImpl;
 import com.car_service.service_order.service.dto.ServiceOrderDto;
 import com.car_service.vehicle.service.vehicle.VehicleService;
-import com.car_service.vehicle.service.vehicle.VehicleServiceImpl;
 import com.car_service.vehicle.service.vehicle.dto.VehicleDto;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -32,6 +30,7 @@ public class ServiceOrderThymeleafController {
 
     @GetMapping("/page")
     public String showServiceOrderPage() {
+
         log.info("====>>>> showServiceOrderPage() execution.");
         return "service_order/service-orders";
     }
@@ -40,6 +39,7 @@ public class ServiceOrderThymeleafController {
     public String listAllServiceOrders(Model model) {
         List<ServiceOrderDto> serviceOrders = serviceOrderService.findAllServiceOrders();
         model.addAttribute("serviceOrders", serviceOrders);
+
         log.info("====>>>> showAllServiceOrders() execution.");
         return "/service_order/all-service-orders";
     }
@@ -69,6 +69,7 @@ public class ServiceOrderThymeleafController {
             return "/service_order/add-new-service-order";
         }
         serviceOrderService.createServiceOrder(serviceOrderDto);
+
         log.info("====>>>> saveNewServiceOrder() execution.");
         return "redirect:/service-order/";
     }
@@ -114,6 +115,7 @@ public class ServiceOrderThymeleafController {
         }
         serviceOrderDto.setId(id);
         serviceOrderService.updateServiceOrder(serviceOrderDto);
+
         log.info("====>>>> updateServiceOrder(" + id + ") execution.");
         return "redirect:/service-order/";
     }
@@ -122,23 +124,9 @@ public class ServiceOrderThymeleafController {
     @GetMapping("/delete/{id}")
     public String deleteServiceOrder(@PathVariable("id") Long id) {
         serviceOrderService.deleteServiceOrder(id);
+
         log.info("====>>>> deleteServiceOrder(" + id + ") execution");
         return "redirect:/service-order/";
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

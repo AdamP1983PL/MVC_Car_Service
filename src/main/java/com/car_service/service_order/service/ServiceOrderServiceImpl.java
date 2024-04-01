@@ -46,6 +46,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     @Override
     public List<ServiceOrderDto> findServiceOrdersByStatus(OrderStatus orderStatus) {
+
         log.info("====>>>> findServiceOrdersByStatus(" + orderStatus + ") execution.");
         return serviceOrderRepository.findServiceOrderByOrderStatus(orderStatus).stream()
                 .map(serviceOrderMapper::mapToServiceOrderDto)
@@ -54,6 +55,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     @Override
     public List<ServiceOrderDto> findServiceOrdersByCustomerId(Long id) {
+
         log.info("====>>>> findServiceOrdersByCustomerId(" + id + ") execution.");
         return serviceOrderRepository.findServiceOrderByCustomerId(id).stream()
                 .map(serviceOrderMapper::mapToServiceOrderDto)
@@ -62,6 +64,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     @Override
     public List<ServiceOrderDto> findServiceOrdersByVehicleId(Long id) {
+
         log.info("====>>>> findServiceOrdersByVehicleId(" + id + ") execution.");
         return serviceOrderRepository.findServiceOrderByVehicleId(id).stream()
                 .map(serviceOrderMapper::mapToServiceOrderDto)

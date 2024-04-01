@@ -29,5 +29,3 @@ public interface VehicleService {
     Page<VehicleDto> findVehiclesPaginated(int pageNo, int pageSize);
 
 }
-
-

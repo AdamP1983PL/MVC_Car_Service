@@ -24,4 +24,5 @@ public interface ServiceOrderService {
     ServiceOrderDto updateServiceOrderStatus(ServiceOrderDto serviceOrderDto);
 
     void deleteServiceOrder(Long id);
+
 }
