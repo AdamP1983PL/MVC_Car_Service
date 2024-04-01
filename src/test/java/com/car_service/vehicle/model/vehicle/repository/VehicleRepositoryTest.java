@@ -1,5 +1,10 @@
 package com.car_service.vehicle.model.vehicle.repository;
 
+
+import com.car_service.customer.model.customer.domain.Customer;
+import com.car_service.customer.model.customer.repository.CustomerRepository;
+import com.car_service.customer.model.enums.PaymentMethod;
+import com.car_service.customer.model.enums.TaxValue;
 import com.car_service.vehicle.model.enums.EngineType;
 import com.car_service.vehicle.model.enums.GearboxType;
 import com.car_service.vehicle.model.vehicle.domain.Vehicle;
@@ -17,14 +22,36 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class VehicleRepositoryTest {
     private Vehicle vehicle1;
+    private Customer customer;
 
     @Autowired
     private VehicleRepository vehicleRepository;
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
     @BeforeEach()
     void initialise() {
+        customer = Customer.builder()
+                .customerName("test customer name")
+                .taxNumber("1112223344")
+                .country("country")
+                .city("city")
+                .postalCode("postalCode")
+                .street("street")
+                .customerEmail("test@test.com")
+                .customerPhoneNumber("111-111-111")
+                .customerWebsite("www@www.com")
+                .isActive(true)
+                .paymentIsBlocked(false)
+                .paymentMethod(PaymentMethod.CASH)
+                .taxValue(TaxValue.TWENTY_THREE)
+                .contactPersonName("test name")
+                .contactPersonEmail("test email")
+                .contactPersonPhone("000000000")
+                .build();
+
         vehicle1 = Vehicle.builder()
-                .id(1L)
                 .registrationNumber("registration 1")
                 .vehicleIdentificationNumber("vin 1")
                 .manufacturer("manufacturer")
@@ -34,12 +61,14 @@ class VehicleRepositoryTest {
                 .engineType(EngineType.DIESEL)
                 .gearboxType(GearboxType.MANUAL)
                 .additionalInformation("none1")
+                .customer(customer)
                 .build();
     }
 
     @AfterEach()
     void cleanUp() {
-        vehicleRepository.deleteAll();
+        vehicleRepository.deleteById(vehicle1.getId());
+        customerRepository.deleteById(customer.getId());
     }
 
     @Test
@@ -74,11 +103,6 @@ class VehicleRepositoryTest {
                 () -> assertNotNull(testVehicle),
                 () -> assertEquals("registration 1", testVehicle.get().getRegistrationNumber())
         );
-    }
-
-    // todo YAGNI?
-    @Test
-    void findVehicleByManufacturerAndModelOrderByManufacturerAscModelAsc() {
     }
 
 }

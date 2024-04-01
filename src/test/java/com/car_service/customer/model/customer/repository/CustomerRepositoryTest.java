@@ -3,10 +3,7 @@ package com.car_service.customer.model.customer.repository;
 import com.car_service.customer.model.customer.domain.Customer;
 import com.car_service.customer.model.enums.PaymentMethod;
 import com.car_service.customer.model.enums.TaxValue;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -24,9 +21,8 @@ class CustomerRepositoryTest {
     @BeforeEach()
     void initialise() {
         customer = Customer.builder()
-                .id(1L)
                 .customerName("test customer name")
-                .taxNumber("1112223344")
+                .taxNumber("0002223344")
                 .country("country")
                 .city("city")
                 .postalCode("postalCode")
@@ -46,7 +42,7 @@ class CustomerRepositoryTest {
 
     @AfterEach()
     void cleanUp() {
-        customerRepository.deleteAll();
+        customerRepository.deleteById(customer.getId());
     }
 
     @Test
@@ -59,12 +55,10 @@ class CustomerRepositoryTest {
         List<Customer> testedCustomersList = customerRepository
                 .findCustomerByCustomerNameContaining("custo");
 
-        // todo doesnt work with multiple words
-
         // then
         assertNotNull(testedCustomersList.get(0));
         assertFalse(testedCustomersList.isEmpty());
-        assertEquals("1112223344", testedCustomersList.get(0).getTaxNumber());
+        assertEquals("0002223344", testedCustomersList.get(0).getTaxNumber());
     }
 
     @Test
@@ -74,7 +68,7 @@ class CustomerRepositoryTest {
         customerRepository.save(customer);
 
         // when
-        Customer testedCustomer = customerRepository.findCustomerByTaxNumber("1112223344").get();
+        Customer testedCustomer = customerRepository.findCustomerByTaxNumber("0002223344").get();
 
         // then
         assertNotNull(testedCustomer);

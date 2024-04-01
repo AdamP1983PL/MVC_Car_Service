@@ -1,7 +1,6 @@
 package com.car_service.customer.service.customer;
 
 import com.car_service.customer.model.customer.domain.Customer;
-
 import com.car_service.customer.model.customer.repository.CustomerRepository;
 import com.car_service.customer.model.enums.PaymentMethod;
 import com.car_service.customer.model.enums.TaxValue;
@@ -70,7 +69,7 @@ class CustomerServiceImplTest {
 
     @AfterEach()
     void cleanUp() {
-        customerRepository.deleteAll();
+        customerRepository.deleteById(customer.getId());
     }
 
     @Mock
@@ -141,7 +140,7 @@ class CustomerServiceImplTest {
     @DisplayName("Testing findCustomerById() method that throws ResourceNotFoundException.")
     public void givenCustomerId_whenFindCustomerById_thenThrowsResourceNotFountException() {
         // given
-        Long id = 2L;
+        Long id = 222L;
         given(customerRepository.findById(id)).willReturn(Optional.empty());
 
         // when, then
@@ -267,22 +266,32 @@ class CustomerServiceImplTest {
         );
     }
 
-//    @Test
-//    @DisplayName("Testing deleteCustomerById() method - positive scenario (valid input).")
-//    public void givenCustomerId_whenDeleteCustomerById_thenCustomerObjectDeleted() {
-//        // given
-//        Long id = 1L;
-//        given(customerRepository.findById(id)).willReturn(Optional.ofNullable(customer));
-//
-//        // when
-//        customerServiceImpl.deleteCustomerById(id);
-//
-//        // then
-//        verify(customerRepository, times(1)).findById(id);
-////        verify(customerRepository, times(1)).deleteById(id);
-//    }
+    @Test
+    @DisplayName("Testing deleteCustomerById() method - positive scenario (valid input).")
+    public void givenCustomerId_whenDeleteCustomerById_thenCustomerObjectDeleted() {
+        // given
+        Long id = customer.getId();
+        given(customerRepository.findById(id)).willReturn(Optional.ofNullable(customer));
 
+        // when
+        customerServiceImpl.deleteCustomerById(id);
 
+        // then
+        verify(customerRepository, times(1)).findById(id);
+    }
 
+    @Test
+    @DisplayName("Testing deleteCustomerById() method that throws ResourceNotFoundException.")
+    public void givenCustomerId_whenDeleteCustomerById_thenThrowsResourceNotFountException() {
+        // given
+        Long id = 111111L;
+        given(customerRepository.findById(id)).willReturn(Optional.empty());
+
+        // when, then
+        assertThrows(ResourceNotFoundException.class, () -> {
+            customerServiceImpl.findCustomerById(id);
+        });
+        verify(customerRepository, times(1)).findById(id);
+    }
 
 }

@@ -39,7 +39,7 @@ public class Vehicle {
     private GearboxType gearboxType;
     @Column(name = "ADDITIONAL_INFO")
     private String additionalInformation;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CUSTOMER")
     private Customer customer;
 
