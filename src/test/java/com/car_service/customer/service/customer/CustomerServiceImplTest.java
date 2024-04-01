@@ -67,10 +67,10 @@ class CustomerServiceImplTest {
                 .build();
     }
 
-    @AfterEach()
-    void cleanUp() {
-        customerRepository.deleteById(customer.getId());
-    }
+//    @AfterEach()
+//    void cleanUp() {
+////        customerRepository.deleteById(customer.getId());
+//    }
 
     @Mock
     private CustomerRepository customerRepository;

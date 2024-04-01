@@ -38,7 +38,6 @@ class VehicleServiceImplTest {
     @BeforeEach()
     void initialize() {
         vehicle1 = Vehicle.builder()
-                .id(1L)
                 .registrationNumber("registration 1")
                 .vehicleIdentificationNumber("vin 1")
                 .manufacturer("manufacturer1")
@@ -51,7 +50,6 @@ class VehicleServiceImplTest {
                 .build();
 
         vehicle2 = Vehicle.builder()
-                .id(2L)
                 .registrationNumber("registration 2")
                 .vehicleIdentificationNumber("vin 2")
                 .manufacturer("manufacturer2")
@@ -64,7 +62,6 @@ class VehicleServiceImplTest {
                 .build();
 
         vehicleDto1 = VehicleDto.builder()
-                .id(1L)
                 .registrationNumber("registration 1")
                 .vehicleIdentificationNumber("vin 1")
                 .manufacturer("manufacturer")
@@ -77,7 +74,6 @@ class VehicleServiceImplTest {
                 .build();
 
         vehicleDto2 = VehicleDto.builder()
-                .id(2L)
                 .registrationNumber("registration 2")
                 .vehicleIdentificationNumber("vin 2")
                 .manufacturer("manufacturer2")
@@ -90,7 +86,6 @@ class VehicleServiceImplTest {
                 .build();
 
         updatedVehicle1 = Vehicle.builder()
-                .id(1L)
                 .registrationNumber("registration")
                 .vehicleIdentificationNumber("updated vin 1")
                 .manufacturer("updated manufacturer1")
@@ -103,7 +98,6 @@ class VehicleServiceImplTest {
                 .build();
 
         updatedVehicleDto1 = VehicleDto.builder()
-                .id(1L)
                 .registrationNumber("registration")
                 .vehicleIdentificationNumber("updated vin 1")
                 .manufacturer("updated manufacturer1")
@@ -119,7 +113,8 @@ class VehicleServiceImplTest {
 
     @AfterEach
     void cleanUp() {
-        vehicleRepository.deleteAll();
+        vehicleRepository.deleteById(vehicle1.getId());
+        vehicleRepository.deleteById(vehicle2.getId());
     }
 
     @Mock
@@ -216,7 +211,7 @@ class VehicleServiceImplTest {
         assertAll(
                 () -> assertNotNull(testVehicle),
                 () -> assertEquals(vehicleDto1, testVehicle),
-                () -> assertEquals(1L, testVehicle.getId())
+                () -> assertEquals(vehicle1.getId(), testVehicle.getId())
         );
     }
 
@@ -254,7 +249,7 @@ class VehicleServiceImplTest {
         // then
         assertAll(
                 () -> assertNotNull(createdVehicle),
-                () -> assertEquals(1L, createdVehicle.getId()),
+                () -> assertEquals(vehicle1.getId(), createdVehicle.getId()),
                 () -> assertEquals("1111", createdVehicle.getProductionYear())
         );
     }

@@ -89,7 +89,6 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
         log.info("====>>>> createServiceOrder(" + serviceOrderDto.getId() + ") execution.");
         return serviceOrderMapper.mapToServiceOrderDto(savedServiceOrder);
-
     }
 
     @Override
