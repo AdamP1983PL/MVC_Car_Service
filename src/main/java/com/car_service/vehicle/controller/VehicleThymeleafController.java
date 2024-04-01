@@ -57,14 +57,14 @@ public class VehicleThymeleafController {
         return "/vehicle/select-customer";
     }
 
-    @GetMapping("/by-customer/select/{id}")
-    public String listVehiclesByCustomer(@PathVariable("id") Long id, Model model) {
-        List<VehicleDto> vehiclesByCustomer = vehicleServiceImpl.findVehicleByCustomerId(id);
-        model.addAttribute("vehiclesByCustomer", vehiclesByCustomer);
-
-        log.info("====>>>> listVehiclesByCustomer(" + id + ") execution.");
-        return "/vehicle/vehicle-by-customer";
-    }
+//    @GetMapping("/by-customer/select/{id}")
+//    public String listVehiclesByCustomer(@PathVariable("id") Long id, Model model) {
+//        List<VehicleDto> vehiclesByCustomer = vehicleServiceImpl.findVehicleByCustomerId(id);
+//        model.addAttribute("vehiclesByCustomer", vehiclesByCustomer);
+//
+//        log.info("====>>>> listVehiclesByCustomer(" + id + ") execution.");
+//        return "/vehicle/vehicle-by-customer";
+//    }
 
     @GetMapping("/add-vehicle")
     public String addVehicle(Model model) {

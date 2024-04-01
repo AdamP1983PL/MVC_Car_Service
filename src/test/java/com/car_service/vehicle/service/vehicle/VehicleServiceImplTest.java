@@ -1,5 +1,12 @@
 package com.car_service.vehicle.service.vehicle;
 
+import com.car_service.customer.model.customer.domain.Customer;
+import com.car_service.customer.model.customer.repository.CustomerRepository;
+import com.car_service.customer.model.enums.PaymentMethod;
+import com.car_service.customer.model.enums.TaxValue;
+import com.car_service.customer.service.customer.CustomerServiceImpl;
+import com.car_service.customer.service.customer.dto.CustomerDto;
+import com.car_service.customer.service.customer.mapper.CustomerMapper;
 import com.car_service.exceptions.ResourceNotFoundException;
 import com.car_service.vehicle.model.enums.EngineType;
 import com.car_service.vehicle.model.enums.GearboxType;
@@ -34,9 +41,45 @@ class VehicleServiceImplTest {
     private VehicleDto vehicleDto1;
     private VehicleDto vehicleDto2;
     private VehicleDto updatedVehicleDto1;
+    private Customer customer;
+    private CustomerDto customerDto;
 
     @BeforeEach()
     void initialize() {
+        customer = Customer.builder()
+                .id(1L)
+                .customerName("test customer name")
+                .taxNumber("1112223344")
+                .country("country")
+                .city("city")
+                .postalCode("postalCode")
+                .street("street")
+                .customerEmail("test@test.com")
+                .customerPhoneNumber("111-111-111")
+                .customerWebsite("www@www.com")
+                .isActive(true)
+                .paymentIsBlocked(false)
+                .paymentMethod(PaymentMethod.CASH)
+                .taxValue(TaxValue.TWENTY_THREE)
+                .build();
+
+        customerDto = CustomerDto.builder()
+                .id(1L)
+                .customerName("test customer name")
+                .taxNumber("1112223344")
+                .country("country")
+                .city("city")
+                .postalCode("postalCode")
+                .street("street")
+                .customerEmail("test@test.com")
+                .customerPhoneNumber("111-111-111")
+                .customerWebsite("www@www.com")
+                .isActive(true)
+                .paymentIsBlocked(false)
+                .paymentMethod(PaymentMethod.CASH)
+                .taxValue(TaxValue.TWENTY_THREE)
+                .build();
+
         vehicle1 = Vehicle.builder()
                 .registrationNumber("registration 1")
                 .vehicleIdentificationNumber("vin 1")
@@ -47,6 +90,7 @@ class VehicleServiceImplTest {
                 .engineType(EngineType.DIESEL)
                 .gearboxType(GearboxType.MANUAL)
                 .additionalInformation("none1")
+                .customer(customer)
                 .build();
 
         vehicle2 = Vehicle.builder()
@@ -59,18 +103,20 @@ class VehicleServiceImplTest {
                 .engineType(EngineType.PETROL)
                 .gearboxType(GearboxType.AUTOMATIC)
                 .additionalInformation("test information")
+                .customer(customer)
                 .build();
 
         vehicleDto1 = VehicleDto.builder()
                 .registrationNumber("registration 1")
                 .vehicleIdentificationNumber("vin 1")
-                .manufacturer("manufacturer")
+                .manufacturer("manufacturer1")
                 .model("model")
                 .productionYear("1111")
                 .mileage(11.11)
                 .engineType(EngineType.DIESEL)
                 .gearboxType(GearboxType.MANUAL)
                 .additionalInformation("none1")
+                .customerId(customer.getId())
                 .build();
 
         vehicleDto2 = VehicleDto.builder()
@@ -83,6 +129,7 @@ class VehicleServiceImplTest {
                 .engineType(EngineType.PETROL)
                 .gearboxType(GearboxType.AUTOMATIC)
                 .additionalInformation("test information")
+                .customerId(customerDto.getId())
                 .build();
 
         updatedVehicle1 = Vehicle.builder()
@@ -95,6 +142,7 @@ class VehicleServiceImplTest {
                 .engineType(EngineType.DIESEL)
                 .gearboxType(GearboxType.MANUAL)
                 .additionalInformation("updated none1")
+                .customer(customer)
                 .build();
 
         updatedVehicleDto1 = VehicleDto.builder()
@@ -107,7 +155,9 @@ class VehicleServiceImplTest {
                 .engineType(EngineType.DIESEL)
                 .gearboxType(GearboxType.MANUAL)
                 .additionalInformation("updated none1")
+                .customerId(customerDto.getId())
                 .build();
+
 
     }
 
@@ -116,6 +166,15 @@ class VehicleServiceImplTest {
         vehicleRepository.deleteById(vehicle1.getId());
         vehicleRepository.deleteById(vehicle2.getId());
     }
+
+    @Mock
+    private CustomerRepository customerRepository;
+
+    @Mock
+    private CustomerMapper customerMapper;
+
+    @InjectMocks
+    private CustomerServiceImpl customerServiceImpl;
 
     @Mock
     private VehicleRepository vehicleRepository;
@@ -137,6 +196,91 @@ class VehicleServiceImplTest {
 
         // then
         assertTrue(vehicles.isEmpty());
+    }
+
+    @Test
+    @DisplayName("Testing findVehicleById() method - positive scenario (valid input)")
+    public void givenVehicleId_whenFindVehicleById_thenReturnVehicleDto() {
+        // given
+        given(vehicleRepository.findById(vehicle1.getId())).willReturn(Optional.ofNullable(vehicle1));
+        given(vehicleMapper.mapToVehicleDto(vehicle1)).willReturn(vehicleDto1);
+
+        // when
+        VehicleDto testVehicle = vehicleServiceImpl.findVehicleById(vehicleDto1.getId());
+
+        // then
+        assertAll(
+                () -> assertNotNull(testVehicle),
+                () -> assertEquals("registration 1", testVehicle.getRegistrationNumber()),
+                () -> assertEquals("manufacturer1", testVehicle.getManufacturer()),
+                () -> assertEquals(customer.getId(), testVehicle.getCustomerId())
+        );
+    }
+
+    @Test
+    @DisplayName("Testing findVehicleById() method that throws ResourceNotFoundException.")
+    public void givenVehicleId_whenFindVehicleById_thenThrowResourceNotFoundException() {
+        // given
+        Long id = 222L;
+        given(vehicleRepository.findById(id)).willReturn(Optional.empty());
+
+        // when, then
+        assertThrows(ResourceNotFoundException.class, () -> {
+            vehicleServiceImpl.findVehicleById(id);
+        });
+        verify(vehicleRepository, times(1)).findById(id);
+        verify(vehicleMapper, never()).mapToVehicleDto(any(Vehicle.class));
+    }
+
+    @Test
+    @DisplayName("Testing findVehicleByCustomerId() method - positive scenario (valid input)")
+    public void givenCustomerId_whenFindVehicleByCustomerId_thenReturnVehicleDtoList() {
+        // given
+        given(customerRepository.findById(customerDto.getId())).willReturn(Optional.ofNullable(customer));
+        given(customerMapper.mapToCustomerDto(customer)).willReturn(customerDto);
+        given(customerServiceImpl.findCustomerById(customer.getId())).willReturn(customerDto);
+        given(customerMapper.mapToCustomer(customerDto)).willReturn(customer);
+        given(vehicleMapper.mapToVehicleDto(vehicle1)).willReturn(vehicleDto1);
+        given(vehicleMapper.mapToVehicleDto(vehicle2)).willReturn(vehicleDto2);
+        given(vehicleRepository.findVehicleByCustomer(customer)).willReturn(List.of(vehicle1, vehicle2));
+
+        // when
+        List<VehicleDto> testList = vehicleServiceImpl.findVehicleByCustomerId(customer.getId());
+
+        // then
+        assertAll(
+                () -> assertNotNull(testList),
+                () -> assertEquals(2, testList.size()),
+                () -> assertEquals("registration 2", testList.get(1).getRegistrationNumber()),
+                () -> assertEquals("vin 2", testList.get(1).getVehicleIdentificationNumber()),
+                () -> assertEquals("manufacturer2", testList.get(1).getManufacturer()),
+                () -> assertEquals("model2", testList.get(1).getModel()),
+                () -> assertEquals("2222", testList.get(1).getProductionYear()),
+                () -> assertEquals("22.22", testList.get(1).getMileage()),
+                () -> assertEquals(EngineType.PETROL, testList.get(1).getEngineType()),
+                () -> assertEquals(GearboxType.AUTOMATIC, testList.get(1).getGearboxType()),
+                () -> assertEquals("test information", testList.get(1).getAdditionalInformation()),
+                () -> assertEquals(customer.getId(), testList.get(1).getCustomerId())
+        );
+    }
+
+    @Test
+    @DisplayName("Testing findVehicleByCustomerId() method - negative scenario (empty list).")
+    public void givenCustomerId_whenFindVehicleByCustomerId_thenReturnEmptyList() {
+        // given
+        given(customerRepository.findById(customerDto.getId())).willReturn(Optional.ofNullable(customer));
+        given(customerMapper.mapToCustomerDto(customer)).willReturn(customerDto);
+        given(customerServiceImpl.findCustomerById(customer.getId())).willReturn(customerDto);
+        given(customerMapper.mapToCustomer(customerDto)).willReturn(customer);
+        given(vehicleMapper.mapToVehicleDto(vehicle1)).willReturn(vehicleDto1);
+        given(vehicleMapper.mapToVehicleDto(vehicle2)).willReturn(vehicleDto2);
+        given(vehicleRepository.findVehicleByCustomer(customer)).willReturn(Collections.emptyList());
+
+        // when
+        List<VehicleDto> testList = vehicleServiceImpl.findVehicleByCustomerId(customer.getId());
+
+        // then
+        assertEquals(0, testList.size());
     }
 
     @Test

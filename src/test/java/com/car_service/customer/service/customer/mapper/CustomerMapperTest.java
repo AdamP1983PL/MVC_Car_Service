@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CustomerMapperTest {
-
     private Customer customer;
     private CustomerDto customerDto;
 

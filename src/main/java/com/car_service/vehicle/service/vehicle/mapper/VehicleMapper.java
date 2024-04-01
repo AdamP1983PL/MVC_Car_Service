@@ -2,7 +2,6 @@ package com.car_service.vehicle.service.vehicle.mapper;
 
 import com.car_service.customer.model.customer.domain.Customer;
 import com.car_service.customer.service.customer.CustomerService;
-import com.car_service.customer.service.customer.CustomerServiceImpl;
 import com.car_service.customer.service.customer.dto.CustomerDto;
 import com.car_service.customer.service.customer.mapper.CustomerMapper;
 import com.car_service.vehicle.model.vehicle.domain.Vehicle;

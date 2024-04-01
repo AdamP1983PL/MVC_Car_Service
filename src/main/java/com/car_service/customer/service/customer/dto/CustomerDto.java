@@ -47,13 +47,9 @@ public class CustomerDto {
     @NotEmpty(message = "Customer phone number should not be empty.")
     private String customerPhoneNumber;
     private String customerWebsite;
-    //    @NotEmpty(message = "Select option.")
     private boolean isActive;
-    //    @NotEmpty(message = "Select option.")
     private boolean paymentIsBlocked;
-    //    @NotEmpty(message = "Select option.")
     private PaymentMethod paymentMethod;
-    //    @NotEmpty(message = "Select option.")
     private TaxValue taxValue;
     @Size(min = 3, max = 50)
     @NotEmpty(message = "Contact person full name should not be empty.")
